@@ -1,0 +1,10 @@
+{
+    "name": "basic-ts",
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "clean": "rm -rf build"
+    },
+    "dependencies": {
+        "typescript": "^4.5.4"
+    }
+}

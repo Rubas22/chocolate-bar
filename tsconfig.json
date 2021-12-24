@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES5",                /* Specify ECMAScript target version: 'ES5'*/
+    "module": "commonjs",           /* Specify module code generation: 'commonjs'*/
+    "outDir": "build",              /* Redirect output structure to the directory. */
+    "removeComments": true,         /* Do not emit comments to output. */
+    },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
