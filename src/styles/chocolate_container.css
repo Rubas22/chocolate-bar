@@ -1,8 +1,3 @@
 .chocolate-bar-container {
   text-align: center;
 }
-
-.chocolate-bar-container .chocolate-bar-info {
-  display: flex;
-  justify-content: space-evenly;
-}
