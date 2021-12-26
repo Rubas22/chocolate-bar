@@ -1,21 +1,18 @@
-import { ChocolateBar } from "./modules/chocolateBar";
-
-var chocolateBar: ChocolateBar = new ChocolateBar([], []);
-var chocolateBarSize = [0, 0];
+var chocolateBarHeight: number = 0;
+var chocolateBarWidth: number = 0;
 
 window.onload = () => {
   const inputForm = document.getElementById("set-size-bar");
-  // inputForm.onsubmit= () => {
-  //     this.setChocolateBarSize();
-  // }
   inputForm?.addEventListener("submit", (event) => {
-    console.log(event);
     event.preventDefault();
+    let form: any = event.target;
+    let height: number = form[0].value;
+    let width: number = form[1].value;
+    this.setChocolateBarSize(height, width);
   });
 };
 
-function setChocolateBarSize() {
-  this.chocolateBarSize[0] = 2;
-  this.chocolateBarSize[1] = 4;
-  console.log("we did it");
+function setChocolateBarSize(height: number, width: number): void {
+  this.chocolateBarHeight = height;
+  this.chocolateBarWidth = width;
 }

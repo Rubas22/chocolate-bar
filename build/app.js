@@ -1,17 +1,18 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const chocolateBar_1 = require("./modules/chocolateBar");
-var chocolateBar = new chocolateBar_1.ChocolateBar([], []);
-var chocolateBarSize = [0, 0];
+var chocolateBarHeight = 0;
+var chocolateBarWidth = 0;
 window.onload = () => {
     const inputForm = document.getElementById("set-size-bar");
     inputForm === null || inputForm === void 0 ? void 0 : inputForm.addEventListener("submit", (event) => {
-        console.log(event);
         event.preventDefault();
+        let form = event.target;
+        let height = form[0].value;
+        let width = form[1].value;
+        this.setChocolateBarSize(height, width);
+        console.log(this.chocolateBarWidth);
     });
 };
-function setChocolateBarSize() {
-    this.chocolateBarSize[0] = 2;
-    this.chocolateBarSize[1] = 4;
-    console.log("we did it");
+function setChocolateBarSize(height, width) {
+    this.chocolateBarHeight = height;
+    this.chocolateBarWidth = width;
 }
