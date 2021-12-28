@@ -45,6 +45,7 @@ function setWeightInputs(): void {
   const numColInputs = this.chocolateBarWidth - 1;
   const numRowInputs = this.chocolateBarHeight - 1;
   if (colInputsDiv) {
+    colInputsDiv.innerHTML = "";
     for (let i = 0; i < numColInputs; i++) {
       colInputsDiv.innerHTML += "<input type='number' required>";
     }
@@ -52,6 +53,7 @@ function setWeightInputs(): void {
     window.alert("Up! somenthing when wrong");
   }
   if (rowInputsDiv) {
+    rowInputsDiv.innerHTML = "";
     for (let i = 0; i < numRowInputs; i++) {
       rowInputsDiv.innerHTML += "<input type='number' required>";
     }
