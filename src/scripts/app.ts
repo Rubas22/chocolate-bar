@@ -25,8 +25,12 @@ function deployChocolateBar(): void {
     rows += "<div class='row'></div>";
   }
   if (chocBarDiv !== null) {
+    chocBarDiv.innerHTML = "";
     for (let i = 0; i < this.chocolateBarWidth; i++) {
       chocBarDiv.innerHTML += "<div class='col'>" + rows + "</div>";
     }
+  }
+  else {
+    window.alert("Up! somenthing when wrong");
   }
 }
