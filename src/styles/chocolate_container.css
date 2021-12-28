@@ -2,8 +2,16 @@
   text-align: center;
 }
 
-.chocolate-bar-deployment form {
+.chocolate-bar-deployment {
+  display: flex;
+  justify-content: center;
+}
+
+.chocolate-bar-deployment form > .chocolate-bar {
   display: grid;
+  grid-template-columns: auto 1fr;
+  width: max-content;
+  margin: 40px 0;
   grid-template-areas:
     ". colInputs"
     "rowInputs chocBar";
@@ -12,14 +20,21 @@
 .col-inputs {
   grid-area: colInputs;
   justify-self: start;
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .row-inputs {
   grid-area: rowInputs;
   justify-self: end;
   align-self: center;
+  height: 100%;
+  margin-right: 8px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .cbd-container {
@@ -38,4 +53,20 @@
   border-style: outset;
   width: 42px;
   height: 42px;
+}
+
+.chocolate-bar-deployment form input {
+  width: 40px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

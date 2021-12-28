@@ -47,7 +47,8 @@ function setWeightInputs(): void {
   if (colInputsDiv) {
     colInputsDiv.innerHTML = "";
     for (let i = 0; i < numColInputs; i++) {
-      colInputsDiv.innerHTML += "<input type='number' required>";
+      colInputsDiv.innerHTML +=
+        "<input type='number' min='0' max='9999' required>";
     }
   } else {
     window.alert("Up! somenthing when wrong");
@@ -55,7 +56,8 @@ function setWeightInputs(): void {
   if (rowInputsDiv) {
     rowInputsDiv.innerHTML = "";
     for (let i = 0; i < numRowInputs; i++) {
-      rowInputsDiv.innerHTML += "<input type='number' required>";
+      rowInputsDiv.innerHTML +=
+        "<input type='number' min='0' max='9999' required>";
     }
   } else {
     window.alert("Up! somenthing when wrong");
