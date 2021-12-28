@@ -20,17 +20,16 @@ function setChocolateBarSize(height: number, width: number): void {
 
 function deployChocolateBar(): void {
   let chocBarDiv = document.getElementById("cbd");
-  let rows = "";
-  for (let i = 0; i < this.chocolateBarHeight; i++) {
-    rows += "<div class='row'></div>";
+  let row = "";
+  for (let i = 0; i < this.chocolateBarWidth; i++) {
+    row += "<div class='piece'></div>";
   }
   if (chocBarDiv !== null) {
     chocBarDiv.innerHTML = "";
-    for (let i = 0; i < this.chocolateBarWidth; i++) {
-      chocBarDiv.innerHTML += "<div class='col'>" + rows + "</div>";
+    for (let i = 0; i < this.chocolateBarHeight; i++) {
+      chocBarDiv.innerHTML += "<div class='row'>" + row + "</div>";
     }
-  }
-  else {
+  } else {
     window.alert("Up! somenthing when wrong");
   }
 }
