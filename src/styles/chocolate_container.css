@@ -2,6 +2,31 @@
   text-align: center;
 }
 
+.chocolate-bar-deployment form {
+  display: grid;
+  grid-template-areas:
+    ". colInputs"
+    "rowInputs chocBar";
+}
+
+.col-inputs {
+  grid-area: colInputs;
+  justify-self: start;
+}
+
+.row-inputs {
+  grid-area: rowInputs;
+  justify-self: end;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cbd-container {
+  grid-area: chocBar;
+  justify-self: start;
+}
+
 .row {
   display: flex;
   justify-content: center;
