@@ -33,19 +33,6 @@
   justify-self: start;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-.piece {
-  background-color: rgb(122, 2, 2);
-  border: rgb(93, 9, 9) solid 8px;
-  border-style: outset;
-  width: 42px;
-  height: 42px;
-}
-
 .chocolate-bar-deployment form input {
   width: 40px;
 }
