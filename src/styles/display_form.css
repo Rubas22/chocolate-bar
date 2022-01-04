@@ -38,9 +38,12 @@
   justify-self: start;
 }
 
-.chocolate-bar-deployment form input {
+.chocolate-bar-deployment input {
   width: 40px;
 }
+ .chocolate-bar-deployment button {
+   margin-right: 50px;
+ }
 
 /* Chrome, Safari, Edge, Opera */
 .chocolate-bar-deployment input::-webkit-outer-spin-button,
