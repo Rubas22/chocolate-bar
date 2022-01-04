@@ -1,4 +1,5 @@
 @import "title.css";
-@import "chocolate_container.css";
-@import "chocolate_bar_forms.css";
-@import "chocolate_bar_display.css";
+@import "body_container.css";
+@import "size_form.css";
+@import "display_form.css";
+@import "chocolate_bar.css";
