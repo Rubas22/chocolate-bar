@@ -23,6 +23,6 @@
 
 .chocolate-bar-container button:hover {
   background-color: rgb(102, 25, 25);
-  color: aliceblue;
+  color: white;
   cursor: pointer;
 }
