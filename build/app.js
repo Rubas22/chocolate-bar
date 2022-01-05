@@ -19,6 +19,7 @@ function setChocolateBarSize(height, width) {
 function deployChocolateBar() {
     this.showChocolateBar();
     this.setWeightInputs();
+    this.unhideCalculateButton();
 }
 function showChocolateBar() {
     const chocBarDiv = document.getElementById("cbd-container");
@@ -59,6 +60,15 @@ function setWeightInputs() {
         }
     }
     else {
+        window.alert("Up! somenthing when wrong");
+    }
+}
+function unhideCalculateButton() {
+    const divBottom = document.getElementById("cbc-div");
+    if (divBottom && divBottom.hidden) {
+        divBottom.hidden = false;
+    }
+    else if (!divBottom) {
         window.alert("Up! somenthing when wrong");
     }
 }

@@ -21,6 +21,7 @@ function setChocolateBarSize(height: number, width: number): void {
 function deployChocolateBar(): void {
   this.showChocolateBar();
   this.setWeightInputs();
+  this.unhideCalculateButton();
 }
 
 function showChocolateBar(): void {
@@ -60,6 +61,15 @@ function setWeightInputs(): void {
         "<input type='number' min='0' max='9999' required>";
     }
   } else {
+    window.alert("Up! somenthing when wrong");
+  }
+}
+
+function unhideCalculateButton(): void {
+  const divBottom = document.getElementById("cbc-div");
+  if (divBottom && divBottom.hidden) {
+    divBottom.hidden = false;
+  } else if (!divBottom) {
     window.alert("Up! somenthing when wrong");
   }
 }
