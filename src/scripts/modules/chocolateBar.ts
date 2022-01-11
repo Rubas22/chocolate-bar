@@ -8,11 +8,11 @@ export class ChocolateBar {
   }
 
   get numberOfRows(): number {
-    return this.weightOfRows.length;
+    return this.weightOfRows.length + 1;
   }
 
   get numberOfCols(): number {
-    return this.weightOfCols.length;
+    return this.weightOfCols.length + 1;
   }
 
   calculateMinimumCost(): number {
