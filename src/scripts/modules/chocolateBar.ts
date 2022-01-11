@@ -1,55 +1,57 @@
 export class ChocolateBar {
-  weightOfRows: Array<number>;
-  weightOfCols: Array<number>;
+  weightRowEdges: Array<number>;
+  weightColEdges: Array<number>;
 
-  constructor(weightOfRows: Array<number>, weightOfCols: Array<number>) {
-    this.weightOfRows = weightOfRows;
-    this.weightOfCols = weightOfCols;
+  constructor(weightRowEdges: Array<number>, weightColEdges: Array<number>) {
+    this.weightRowEdges = weightRowEdges;
+    this.weightColEdges = weightColEdges;
   }
 
-  get numberOfRows(): number {
-    return this.weightOfRows.length + 1;
+  get numHorizontalEdges(): number {
+    return this.weightRowEdges.length;
   }
 
-  get numberOfCols(): number {
-    return this.weightOfCols.length + 1;
+  get numVerticalEdges(): number {
+    return this.weightColEdges.length;
   }
 
   calculateMinimumCost(): number {
-    let cost = 0;
-    let rows = this.weightOfRows;
-    let cols = this.weightOfCols;
-    let maxRow = Math.max(...rows);
-    let maxCol = Math.max(...cols);
+    let minimumCost = 0;
+    let rowEdges = this.weightRowEdges;
+    let colEdges = this.weightColEdges;
+    let maxRowValue = Math.max(...rowEdges);
+    let maxColValue = Math.max(...colEdges);
     let numHorizontalCuts = 0;
     let numVerticalCuts = 0;
-    let previousNumOfRows = this.numberOfRows;
-    let previousNumOfCols = this.numberOfCols;
+    let previousNumHorizontalEdges = this.numHorizontalEdges;
+    let previousNumVerticalEdges = this.numVerticalEdges;
     let numOfMaxRows: number;
     let numOfMaxCols: number;
-    while (rows || cols) {
-      if (maxRow >= maxCol) {
-        rows = rows.filter((value) => {
-          return value < maxRow;
+    while (rowEdges.length > 0 || colEdges.length > 0) {
+      if (maxRowValue >= maxColValue) {
+        rowEdges = rowEdges.filter((value) => {
+          return value < maxRowValue;
         });
-        numOfMaxRows = previousNumOfRows - rows.length;
-        if (numHorizontalCuts < this.numberOfRows) {
+        numOfMaxRows = previousNumHorizontalEdges - rowEdges.length;
+        if (numHorizontalCuts < this.numHorizontalEdges) {
           numHorizontalCuts += numOfMaxRows;
         }
-        cost += maxRow * numOfMaxRows * (numVerticalCuts + 1);
-        previousNumOfRows = rows.length;
+        minimumCost += maxRowValue * numOfMaxRows * (numVerticalCuts + 1);
+        previousNumHorizontalEdges = rowEdges.length;
+        maxRowValue = Math.max(...rowEdges);
       } else {
-        cols = cols.filter((value) => {
-          return value < maxCol;
+        colEdges = colEdges.filter((value) => {
+          return value < maxColValue;
         });
-        numOfMaxCols = previousNumOfCols - cols.length;
-        if (numVerticalCuts < this.numberOfCols) {
+        numOfMaxCols = previousNumVerticalEdges - colEdges.length;
+        if (numVerticalCuts < this.numVerticalEdges) {
           numVerticalCuts += numOfMaxCols;
         }
-        cost += maxCol * numOfMaxCols * numHorizontalCuts;
-        previousNumOfCols = cols.length;
+        minimumCost += maxColValue * numOfMaxCols * (numHorizontalCuts + 1);
+        previousNumVerticalEdges = colEdges.length;
+        maxColValue = Math.max(...colEdges);
       }
     }
-    return cost;
+    return minimumCost;
   }
 }
