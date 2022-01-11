@@ -2,14 +2,19 @@
 let chocolateBarHeight = 0;
 let chocolateBarWidth = 0;
 window.onload = () => {
-    const inputForm = document.getElementById("set-size-bar");
-    inputForm === null || inputForm === void 0 ? void 0 : inputForm.addEventListener("submit", (event) => {
+    const inputSizeForm = document.getElementById("set-size-bar");
+    let inputDisplayForm = document.getElementById("cbd-form");
+    inputSizeForm === null || inputSizeForm === void 0 ? void 0 : inputSizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         let form = event.target;
         let height = form[0].value;
         let width = form[1].value;
         this.setChocolateBarSize(height, width);
         this.deployChocolateBar();
+    });
+    inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log("COOOL");
     });
 };
 function setChocolateBarSize(height, width) {

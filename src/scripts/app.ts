@@ -2,14 +2,21 @@ let chocolateBarHeight: number = 0;
 let chocolateBarWidth: number = 0;
 
 window.onload = () => {
-  const inputForm = document.getElementById("set-size-bar");
-  inputForm?.addEventListener("submit", (event) => {
+  const inputSizeForm = document.getElementById("set-size-bar");
+  let inputDisplayForm = document.getElementById("cbd-form");
+
+  inputSizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     let form: any = event.target;
     let height: number = form[0].value;
     let width: number = form[1].value;
     this.setChocolateBarSize(height, width);
     this.deployChocolateBar();
+  });
+
+  inputDisplayForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    // this.calculateMinimumCost;
   });
 };
 
@@ -72,4 +79,8 @@ function unhideCalculateButton(): void {
   } else if (!divBottom) {
     window.alert("Up! somenthing when wrong");
   }
+}
+
+function calculateMinimumCost(weights: number[]): number {
+  return 0;
 }
