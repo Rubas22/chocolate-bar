@@ -14,7 +14,13 @@ window.onload = () => {
     });
     inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log("COOOL");
+        const inputRows = document.querySelectorAll("#row");
+        const inputCols = document.querySelectorAll("#col");
+        const weightOfRows = [];
+        const weightOfCols = [];
+        inputRows.forEach((input) => weightOfRows.push(parseInt(input.value)));
+        inputCols.forEach((input) => weightOfCols.push(parseInt(input.value)));
+        this.calculateMinimumCost(weightOfRows, weightOfCols);
     });
 };
 function setChocolateBarSize(height, width) {
@@ -51,7 +57,7 @@ function setWeightInputs() {
         colInputsDiv.innerHTML = "";
         for (let i = 0; i < numColInputs; i++) {
             colInputsDiv.innerHTML +=
-                "<input type='number' min='0' max='9999' required>";
+                "<input type='number' id='col' min='0' max='9999' required>";
         }
     }
     else {
@@ -61,7 +67,7 @@ function setWeightInputs() {
         rowInputsDiv.innerHTML = "";
         for (let i = 0; i < numRowInputs; i++) {
             rowInputsDiv.innerHTML +=
-                "<input type='number' min='0' max='9999' required>";
+                "<input type='number' id='row' min='0' max='9999' required>";
         }
     }
     else {
@@ -76,4 +82,7 @@ function unhideCalculateButton() {
     else if (!divBottom) {
         window.alert("Up! somenthing when wrong");
     }
+}
+function calculateMinimumCost(weightOfRows, weightOfCols) {
+    return 0;
 }
