@@ -4,7 +4,7 @@ let chocolateBarWidth = 0;
 let minimumCost;
 window.onload = () => {
     const inputSizeForm = document.getElementById("set-size-bar");
-    let inputDisplayForm = document.getElementById("cbd-form");
+    const inputDisplayForm = document.getElementById("cbd-form");
     inputSizeForm === null || inputSizeForm === void 0 ? void 0 : inputSizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         let form = event.target;
@@ -22,6 +22,7 @@ window.onload = () => {
         inputRows.forEach((input) => weightRowEdges.push(parseInt(input.value)));
         inputCols.forEach((input) => weightColEdges.push(parseInt(input.value)));
         this.calculateMinimumCost(weightRowEdges, weightColEdges);
+        this.setMinCostText();
     });
 };
 function setChocolateBarSize(height, width) {
@@ -87,6 +88,13 @@ function unhideCalculateButton() {
 function calculateMinimumCost(weightRowEdges, weightColEdges) {
     const chocolateBar = new ChocolateBar(weightRowEdges, weightColEdges);
     this.minimumCost = chocolateBar.calculateMinimumCost();
+}
+function setMinCostText() {
+    const minCostSpan = document.getElementById("min-cost-span");
+    if (minCostSpan) {
+        minCostSpan.innerText = this.minimumCost;
+        minCostSpan.style.fontWeight = "bold";
+    }
 }
 class ChocolateBar {
     constructor(weightRowEdges, weightColEdges) {

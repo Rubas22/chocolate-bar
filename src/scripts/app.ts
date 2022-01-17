@@ -30,6 +30,7 @@ window.onload = () => {
     );
 
     this.calculateMinimumCost(weightRowEdges, weightColEdges);
+    this.setMinCostText();
   });
 };
 
@@ -100,6 +101,13 @@ function calculateMinimumCost(
 ): void {
   const chocolateBar = new ChocolateBar(weightRowEdges, weightColEdges);
   this.minimumCost = chocolateBar.calculateMinimumCost();
+}
+
+function setMinCostText(): void {
+  const minCostSpan = document.getElementById("min-cost-span");
+  if (minCostSpan) {
+    minCostSpan.innerText = this.minimumCost;
+  }
 }
 
 class ChocolateBar {

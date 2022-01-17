@@ -13,6 +13,11 @@
     "rowInputs chocBar";
 }
 
+.chocolate-bar-deployment form .min-value {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .col-inputs {
   grid-area: colInputs;
   justify-self: start;
@@ -42,9 +47,9 @@
   width: 40px;
   text-align: center;
 }
- .chocolate-bar-deployment button {
-   margin-right: 50px;
- }
+.chocolate-bar-deployment button {
+  margin-right: 50px;
+}
 
 /* Chrome, Safari, Edge, Opera */
 .chocolate-bar-deployment input::-webkit-outer-spin-button,
