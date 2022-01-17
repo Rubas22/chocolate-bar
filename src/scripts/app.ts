@@ -17,6 +17,7 @@ window.onload = () => {
     let width: number = form[1].value;
     this.setChocolateBarSize(height, width);
     this.deployChocolateBar();
+    this.resetMinCostTextValue();
   });
 
   inputDisplayForm?.addEventListener("submit", (event) => {
@@ -112,6 +113,13 @@ function setMinCostText(): void {
   const minCostSpan = document.getElementById("min-cost-span");
   if (minCostSpan) {
     minCostSpan.innerText = this.minimumCost;
+  }
+}
+
+function resetMinCostTextValue(): void {
+  const minCostSpan = document.getElementById("min-cost-span");
+  if (minCostSpan) {
+    minCostSpan.innerText = "";
   }
 }
 
