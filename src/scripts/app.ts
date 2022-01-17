@@ -100,7 +100,6 @@ function calculateMinimumCost(
 ): void {
   const chocolateBar = new ChocolateBar(weightRowEdges, weightColEdges);
   this.minimumCost = chocolateBar.calculateMinimumCost();
-  console.log(this.minimumCost);
 }
 
 class ChocolateBar {

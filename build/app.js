@@ -87,7 +87,6 @@ function unhideCalculateButton() {
 function calculateMinimumCost(weightRowEdges, weightColEdges) {
     const chocolateBar = new ChocolateBar(weightRowEdges, weightColEdges);
     this.minimumCost = chocolateBar.calculateMinimumCost();
-    console.log(this.minimumCost);
 }
 class ChocolateBar {
     constructor(weightRowEdges, weightColEdges) {
