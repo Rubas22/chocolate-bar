@@ -1,8 +1,8 @@
 // ts main file
 
 /* GLOBAL VARIABLES */
-let chocolateBarHeight: number = 0;
-let chocolateBarWidth: number = 0;
+var chocolateBarHeight: number = 0;
+var chocolateBarWidth: number = 0;
 let minimumCost: number;
 
 /* BUTTON ACTIONS */
@@ -15,9 +15,13 @@ window.onload = () => {
     let form: any = event.target;
     let height: number = form[0].value;
     let width: number = form[1].value;
-    this.setChocolateBarSize(height, width);
-    this.deployChocolateBar();
-    this.resetMinCostTextValue();
+    if (this.chocolateBarHeight != height && this.chocolateBarWidth != width) {
+      this.setChocolateBarSize(height, width);
+      this.deployChocolateBar();
+      this.resetMinCostTextValue();
+    } else {
+      window.alert("Size hasn't been changed, please select a new size");
+    }
   });
 
   inputDisplayForm?.addEventListener("submit", (event) => {

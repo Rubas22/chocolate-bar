@@ -1,6 +1,6 @@
 "use strict";
-let chocolateBarHeight = 0;
-let chocolateBarWidth = 0;
+var chocolateBarHeight = 0;
+var chocolateBarWidth = 0;
 let minimumCost;
 window.onload = () => {
     const inputSizeForm = document.getElementById("set-size-bar");
@@ -10,9 +10,14 @@ window.onload = () => {
         let form = event.target;
         let height = form[0].value;
         let width = form[1].value;
-        this.setChocolateBarSize(height, width);
-        this.deployChocolateBar();
-        this.resetMinCostTextValue();
+        if (this.chocolateBarHeight != height && this.chocolateBarWidth != width) {
+            this.setChocolateBarSize(height, width);
+            this.deployChocolateBar();
+            this.resetMinCostTextValue();
+        }
+        else {
+            window.alert("Size hasn't been changed, please select a new size");
+        }
     });
     inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("submit", (event) => {
         event.preventDefault();
