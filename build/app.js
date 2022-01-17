@@ -93,7 +93,6 @@ function setMinCostText() {
     const minCostSpan = document.getElementById("min-cost-span");
     if (minCostSpan) {
         minCostSpan.innerText = this.minimumCost;
-        minCostSpan.style.fontWeight = "bold";
     }
 }
 class ChocolateBar {

@@ -1,10 +1,14 @@
+// ts main file
+
+/* GLOBAL VARIABLES */
 let chocolateBarHeight: number = 0;
 let chocolateBarWidth: number = 0;
 let minimumCost: number;
 
+/* BUTTON ACTIONS */
 window.onload = () => {
   const inputSizeForm = document.getElementById("set-size-bar");
-  let inputDisplayForm = document.getElementById("cbd-form");
+  const inputDisplayForm = document.getElementById("cbd-form");
 
   inputSizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -34,6 +38,7 @@ window.onload = () => {
   });
 };
 
+/* FUNCTIONS */
 function setChocolateBarSize(height: number, width: number): void {
   this.chocolateBarHeight = height;
   this.chocolateBarWidth = width;
@@ -110,6 +115,7 @@ function setMinCostText(): void {
   }
 }
 
+/* MODELS */
 class ChocolateBar {
   weightRowEdges: [number, "row"][];
   weightColEdges: [number, "col"][];
