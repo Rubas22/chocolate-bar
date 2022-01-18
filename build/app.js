@@ -10,7 +10,7 @@ window.onload = () => {
         let form = event.target;
         let height = form[0].value;
         let width = form[1].value;
-        if (this.chocolateBarHeight != height && this.chocolateBarWidth != width) {
+        if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
             this.setChocolateBarSize(height, width);
             this.deployChocolateBar();
             this.resetMinCostTextValue();
@@ -29,6 +29,9 @@ window.onload = () => {
         inputCols.forEach((input) => weightColEdges.push(parseInt(input.value)));
         this.calculateMinimumCost(weightRowEdges, weightColEdges);
         this.setMinCostText();
+    });
+    inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("reset", () => {
+        this.resetMinCostTextValue();
     });
 };
 function setChocolateBarSize(height, width) {
