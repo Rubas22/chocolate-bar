@@ -3,3 +3,8 @@
 @import "size_form.css";
 @import "display_form.css";
 @import "chocolate_bar.css";
+
+/* ATTRIBUTE SELECTORS */
+[hidden] {
+  display: none;
+}
