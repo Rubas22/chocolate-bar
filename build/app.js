@@ -3,9 +3,9 @@ var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
 let minimumCost;
 window.onload = () => {
-    const inputSizeForm = document.getElementById("size-form");
-    const inputDisplayForm = document.getElementById("costs-form");
-    inputSizeForm === null || inputSizeForm === void 0 ? void 0 : inputSizeForm.addEventListener("submit", (event) => {
+    const sizeForm = document.getElementById("size-form");
+    const costsForm = document.getElementById("costs-form");
+    sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         let form = event.target;
         let height = form[0].value;
@@ -13,13 +13,13 @@ window.onload = () => {
         if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
             this.setChocolateBarSize(height, width);
             this.deployChocolateBar();
-            this.resetMinCostTextValue();
+            this.resetMinimumCost();
         }
         else {
             window.alert("Size hasn't been changed, please select a new size");
         }
     });
-    inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("submit", (event) => {
+    costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const inputRows = document.querySelectorAll('[id^="row-"]');
         const inputCols = document.querySelectorAll('[id^="col-"]');
@@ -30,8 +30,8 @@ window.onload = () => {
         this.calculateMinimumCost(weightRowEdges, weightColEdges);
         this.setMinCostText();
     });
-    inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("reset", () => {
-        this.resetMinCostTextValue();
+    costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("reset", () => {
+        this.resetMinimumCost();
     });
 };
 function setChocolateBarSize(height, width) {
@@ -86,7 +86,7 @@ function setWeightInputs() {
     }
 }
 function unhideCalculateButton() {
-    const divBottom = document.getElementById("calculation-options-container");
+    const divBottom = document.getElementById("calculation-options");
     if (divBottom && divBottom.hidden) {
         divBottom.hidden = false;
     }
@@ -104,10 +104,11 @@ function setMinCostText() {
         minCostSpan.innerText = this.minimumCost;
     }
 }
-function resetMinCostTextValue() {
+function resetMinimumCost() {
     const minCostSpan = document.getElementById("minimum-value");
     if (minCostSpan) {
         minCostSpan.innerText = "";
+        this.minimumCost = null;
     }
 }
 class ChocolateBar {

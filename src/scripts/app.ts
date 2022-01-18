@@ -18,7 +18,7 @@ window.onload = () => {
     if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
       this.setChocolateBarSize(height, width);
       this.deployChocolateBar();
-      this.resetMinCostTextValue();
+      this.resetMinimumCost();
     } else {
       window.alert("Size hasn't been changed, please select a new size");
     }
@@ -43,7 +43,7 @@ window.onload = () => {
   });
 
   costsForm?.addEventListener("reset", () => {
-    this.resetMinCostTextValue();
+    this.resetMinimumCost();
   });
 };
 
@@ -124,10 +124,11 @@ function setMinCostText(): void {
   }
 }
 
-function resetMinCostTextValue(): void {
+function resetMinimumCost(): void {
   const minCostSpan = document.getElementById("minimum-value");
   if (minCostSpan) {
     minCostSpan.innerText = "";
+    this.minimumCost = null;
   }
 }
 
