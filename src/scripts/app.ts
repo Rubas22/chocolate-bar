@@ -28,17 +28,17 @@ window.onload = () => {
     event.preventDefault();
     const rowInputs: any = document.querySelectorAll('[id^="row-"]');
     const colInputs: any = document.querySelectorAll('[id^="col-"]');
-    const weightRowEdges: number[] = [];
-    const weightColEdges: number[] = [];
+    const rowEdgesWeights: number[] = [];
+    const colEdgesWeights: number[] = [];
 
     rowInputs.forEach((input: { value: string }) =>
-      weightRowEdges.push(parseInt(input.value))
+      rowEdgesWeights.push(parseInt(input.value))
     );
     colInputs.forEach((input: { value: string }) =>
-      weightColEdges.push(parseInt(input.value))
+      colEdgesWeights.push(parseInt(input.value))
     );
 
-    this.calculateMinimumCost(weightRowEdges, weightColEdges);
+    this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
     this.setMinCostText();
   });
 
@@ -110,10 +110,10 @@ function unhideCalculateButton(): void {
 }
 
 function calculateMinimumCost(
-  weightRowEdges: number[],
-  weightColEdges: number[]
+  rowEdgesWeights: number[],
+  colEdgesWeights: number[]
 ): void {
-  const chocolateBar = new ChocolateBar(weightRowEdges, weightColEdges);
+  const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
   this.minimumCost = chocolateBar.calculateMinimumCost();
 }
 
@@ -134,20 +134,20 @@ function resetMinimumCost(): void {
 
 /* MODELS */
 class ChocolateBar {
-  weightRowEdges: [number, "row"][];
-  weightColEdges: [number, "col"][];
+  rowEdgesWeights: [number, "row"][];
+  colEdgesWeights: [number, "col"][];
 
-  constructor(weightRowEdges: number[], weightColEdges: number[]) {
-    this.weightRowEdges = weightRowEdges.map((rowEdge) => {
+  constructor(rowEdgesWeights: number[], colEdgesWeights: number[]) {
+    this.rowEdgesWeights = rowEdgesWeights.map((rowEdge) => {
       return [rowEdge, "row"];
     });
-    this.weightColEdges = weightColEdges.map((colEdge) => {
+    this.colEdgesWeights = colEdgesWeights.map((colEdge) => {
       return [colEdge, "col"];
     });
   }
 
   get allWeightsSorted(): [number, string][] {
-    const allWeights = [...this.weightRowEdges, ...this.weightColEdges];
+    const allWeights = [...this.rowEdgesWeights, ...this.colEdgesWeights];
     return allWeights.sort((a, b) => b[0] - a[0]);
   }
 
