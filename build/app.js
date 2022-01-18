@@ -12,7 +12,7 @@ window.onload = () => {
         let width = form[1].value;
         if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
             this.setChocolateBarSize(height, width);
-            this.deployChocolateBar();
+            this.deployChocolateBarContainer();
             this.resetMinimumCost();
         }
         else {
@@ -38,12 +38,12 @@ function setChocolateBarSize(height, width) {
     this.chocolateBarHeight = height;
     this.chocolateBarWidth = width;
 }
-function deployChocolateBar() {
-    this.showChocolateBar();
-    this.setWeightInputs();
-    this.unhideCalculateButton();
+function deployChocolateBarContainer() {
+    this.deployChocolateBar();
+    this.deployWeightInputs();
+    this.unhideCalculationButtons();
 }
-function showChocolateBar() {
+function deployChocolateBar() {
     const chocBarDiv = document.getElementById("chocolate-bar");
     let row = "";
     for (let i = 0; i < this.chocolateBarWidth; i++) {
@@ -59,7 +59,7 @@ function showChocolateBar() {
         window.alert("Up! somenthing when wrong");
     }
 }
-function setWeightInputs() {
+function deployWeightInputs() {
     const colInputsDiv = document.getElementById("cols-wraper");
     const rowInputsDiv = document.getElementById("rows-wraper");
     const numColInputs = this.chocolateBarWidth - 1;
@@ -83,8 +83,8 @@ function setWeightInputs() {
         window.alert("Up! somenthing when wrong");
     }
 }
-function unhideCalculateButton() {
-    const divBottom = document.getElementById("calculation-options");
+function unhideCalculationButtons() {
+    const divBottom = document.getElementById("calculation-buttons");
     if (divBottom && divBottom.hidden) {
         divBottom.hidden = false;
     }

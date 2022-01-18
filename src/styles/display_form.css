@@ -43,7 +43,7 @@
   justify-self: start;
 }
 
-.calculation-options-container {
+.calculation-buttons-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,13 +55,13 @@
   text-align: center;
 }
 
-.calculation-options-container .minimum-cost-container {
+.calculation-buttons-container .minimum-cost-container {
   display: flex;
   gap: 8px;
   margin-left: 32px;
 }
 
-.calculation-options-container .minimum-value-container{
+.calculation-buttons-container .minimum-value-container{
   width: 3.5em;
   text-align: left;
 }

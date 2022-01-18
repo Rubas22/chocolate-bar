@@ -17,7 +17,7 @@ window.onload = () => {
     let width: number = form[1].value;
     if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
       this.setChocolateBarSize(height, width);
-      this.deployChocolateBar();
+      this.deployChocolateBarContainer();
       this.resetMinimumCost();
     } else {
       window.alert("Size hasn't been changed, please select a new size");
@@ -53,13 +53,13 @@ function setChocolateBarSize(height: number, width: number): void {
   this.chocolateBarWidth = width;
 }
 
-function deployChocolateBar(): void {
-  this.showChocolateBar();
-  this.setWeightInputs();
-  this.unhideCalculateButton();
+function deployChocolateBarContainer(): void {
+  this.deployChocolateBar();
+  this.deployWeightInputs();
+  this.unhideCalculationButtons();
 }
 
-function showChocolateBar(): void {
+function deployChocolateBar(): void {
   const chocBarDiv = document.getElementById("chocolate-bar");
   let row = "";
   for (let i = 0; i < this.chocolateBarWidth; i++) {
@@ -75,7 +75,7 @@ function showChocolateBar(): void {
   }
 }
 
-function setWeightInputs(): void {
+function deployWeightInputs(): void {
   const colInputsDiv = document.getElementById("cols-wraper");
   const rowInputsDiv = document.getElementById("rows-wraper");
   const numColInputs = this.chocolateBarWidth - 1;
@@ -98,8 +98,8 @@ function setWeightInputs(): void {
   }
 }
 
-function unhideCalculateButton(): void {
-  const divBottom = document.getElementById("calculation-options");
+function unhideCalculationButtons(): void {
+  const divBottom = document.getElementById("calculation-buttons");
   if (divBottom && divBottom.hidden) {
     divBottom.hidden = false;
   } else if (!divBottom) {
