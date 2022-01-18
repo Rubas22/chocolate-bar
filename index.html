@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./chocolate-bar-icon.png">
-    <link rel="stylesheet" href="src/styles/main.css" />
-    <script src="build/app.js"></script>
-    <title>Chocolate Bar</title>
-  </head>
 
-  <body>
-    <div class="title">
-      <h1>Calculator of minimum cost of cutting a chocolate bar</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="./chocolate-container-icon.png" />
+  <link rel="stylesheet" href="src/styles/main.css" />
+  <script src="build/app.js"></script>
+  <title>Chocolate Bar</title>
+</head>
+
+<body>
+  <div class="title">
+    <h1>Calculator of minimum cost of cutting a chocolate bar</h1>
+  </div>
+  <div class="main-container">
+    <div class="size-options-container">
+      <form id="size-form">
+        <label for="height">Height:</label>
+        <input type="number" id="height" min="1" max="10" required />
+        <label for="width">Width:</label>
+        <input type="number" id="width" min="1" max="10" required />
+        <button type="submit">Set size</button>
+      </form>
     </div>
-    <div class="chocolate-bar-container">
-      <div class="chocolate-bar-set-size">
-        <form action="#" id="set-size-bar">
-          <label for="height">Height:</label>
-          <input type="number" id="height" min="1" max="10" required />
-          <label for="width">Width:</label>
-          <input type="number" id="width" min="1" max="10" required />
-          <button type="submit">Set size</button>
-        </form>
-      </div>
-      <div class="chocolate-bar-deployment">
-        <form action="" id="cbd-form">
-          <div class="chocolate-bar">
-            <div class="col-inputs" id="col-inputs"></div>
-            <div class="row-inputs" id="row-inputs"></div>
-            <div class="cbd-container" id="cbd-container"></div>
-          </div>
-          <div class="chocolate-bar-cost" id="cbc-div" hidden>
-            <input type="reset" value="Reset" />
-            <button>Calculate</button>
-            <div class="minimun-text">
-              <span>Minimum cost:</span>
-              <div class="minimum-value">
-                <span class="min-value" id="min-cost-span"></span>
-              </div>
+    <div class="costs-options-container">
+      <form id="costs-form">
+        <div class="chocolate-container">
+          <div class="cols-wraper" id="cols-wraper"></div>
+          <div class="rows-wraper" id="rows-wraper"></div>
+          <div class="chocolate-bar" id="chocolate-bar"></div>
+        </div>
+        <div class="calculation-options-container" id="calculation-options-container" hidden>
+          <input type="reset" value="Reset" />
+          <button>Calculate</button>
+          <div class="minimum-cost-container">
+            <span>Minimum cost:</span>
+            <div class="minimum-value-container">
+              <span class="minimum-value" id="minimum-value"></span>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

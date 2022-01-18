@@ -1,9 +1,9 @@
-.chocolate-bar-deployment {
+.costs-options-container {
   display: flex;
   justify-content: center;
 }
 
-.chocolate-bar-deployment form > .chocolate-bar {
+.costs-options-container form > .chocolate-container {
   display: grid;
   grid-template-columns: auto 1fr;
   width: max-content;
@@ -13,12 +13,12 @@
     "rowInputs chocBar";
 }
 
-.chocolate-bar-deployment form .min-value {
+.costs-options-container form .minimum-value {
   font-weight: bold;
   text-decoration: underline;
 }
 
-.col-inputs {
+.cols-wraper {
   grid-area: colInputs;
   justify-self: start;
   width: 100%;
@@ -27,7 +27,7 @@
   justify-content: space-evenly;
 }
 
-.row-inputs {
+.rows-wraper {
   grid-area: rowInputs;
   justify-self: end;
   align-self: center;
@@ -38,42 +38,42 @@
   justify-content: space-evenly;
 }
 
-.cbd-container {
+.chocolate-bar {
   grid-area: chocBar;
   justify-self: start;
 }
 
-.chocolate-bar-cost {
+.calculation-options-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
 }
 
-.chocolate-bar-deployment input[type="number"] {
+.costs-options-container input[type="number"] {
   width: 40px;
   text-align: center;
 }
 
-.chocolate-bar-cost .minimun-text {
+.calculation-options-container .minimum-cost-container {
   display: flex;
   gap: 8px;
   margin-left: 32px;
 }
 
-.chocolate-bar-cost .minimum-value{
+.calculation-options-container .minimum-value-container{
   width: 3.5em;
   text-align: left;
 }
 
 /* Chrome, Safari, Edge, Opera */
-.chocolate-bar-deployment input::-webkit-outer-spin-button,
-.chocolate-bar-deployment input::-webkit-inner-spin-button {
+.costs-options-container input::-webkit-outer-spin-button,
+.costs-options-container input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-.chocolate-bar-deployment input[type="number"] {
+.costs-options-container input[type="number"] {
   -moz-appearance: textfield;
 }

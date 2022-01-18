@@ -7,8 +7,8 @@ let minimumCost: number;
 
 /* BUTTON ACTIONS */
 window.onload = () => {
-  const inputSizeForm = document.getElementById("set-size-bar");
-  const inputDisplayForm = document.getElementById("cbd-form");
+  const inputSizeForm = document.getElementById("size-form");
+  const inputDisplayForm = document.getElementById("costs-form");
 
   inputSizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -60,7 +60,7 @@ function deployChocolateBar(): void {
 }
 
 function showChocolateBar(): void {
-  const chocBarDiv = document.getElementById("cbd-container");
+  const chocBarDiv = document.getElementById("chocolate-bar");
   let row = "";
   for (let i = 0; i < this.chocolateBarWidth; i++) {
     row += "<div class='piece'></div>";
@@ -76,8 +76,8 @@ function showChocolateBar(): void {
 }
 
 function setWeightInputs(): void {
-  const colInputsDiv = document.getElementById("col-inputs");
-  const rowInputsDiv = document.getElementById("row-inputs");
+  const colInputsDiv = document.getElementById("cols-wraper");
+  const rowInputsDiv = document.getElementById("rows-wraper");
   const numColInputs = this.chocolateBarWidth - 1;
   const numRowInputs = this.chocolateBarHeight - 1;
   if (colInputsDiv) {
@@ -101,7 +101,7 @@ function setWeightInputs(): void {
 }
 
 function unhideCalculateButton(): void {
-  const divBottom = document.getElementById("cbc-div");
+  const divBottom = document.getElementById("calculation-options-container");
   if (divBottom && divBottom.hidden) {
     divBottom.hidden = false;
   } else if (!divBottom) {
@@ -118,14 +118,14 @@ function calculateMinimumCost(
 }
 
 function setMinCostText(): void {
-  const minCostSpan = document.getElementById("min-cost-span");
+  const minCostSpan = document.getElementById("minimum-value");
   if (minCostSpan) {
     minCostSpan.innerText = this.minimumCost;
   }
 }
 
 function resetMinCostTextValue(): void {
-  const minCostSpan = document.getElementById("min-cost-span");
+  const minCostSpan = document.getElementById("minimum-value");
   if (minCostSpan) {
     minCostSpan.innerText = "";
   }

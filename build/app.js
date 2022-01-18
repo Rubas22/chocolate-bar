@@ -3,8 +3,8 @@ var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
 let minimumCost;
 window.onload = () => {
-    const inputSizeForm = document.getElementById("set-size-bar");
-    const inputDisplayForm = document.getElementById("cbd-form");
+    const inputSizeForm = document.getElementById("size-form");
+    const inputDisplayForm = document.getElementById("costs-form");
     inputSizeForm === null || inputSizeForm === void 0 ? void 0 : inputSizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         let form = event.target;
@@ -44,7 +44,7 @@ function deployChocolateBar() {
     this.unhideCalculateButton();
 }
 function showChocolateBar() {
-    const chocBarDiv = document.getElementById("cbd-container");
+    const chocBarDiv = document.getElementById("chocolate-bar");
     let row = "";
     for (let i = 0; i < this.chocolateBarWidth; i++) {
         row += "<div class='piece'></div>";
@@ -60,8 +60,8 @@ function showChocolateBar() {
     }
 }
 function setWeightInputs() {
-    const colInputsDiv = document.getElementById("col-inputs");
-    const rowInputsDiv = document.getElementById("row-inputs");
+    const colInputsDiv = document.getElementById("cols-wraper");
+    const rowInputsDiv = document.getElementById("rows-wraper");
     const numColInputs = this.chocolateBarWidth - 1;
     const numRowInputs = this.chocolateBarHeight - 1;
     if (colInputsDiv) {
@@ -86,7 +86,7 @@ function setWeightInputs() {
     }
 }
 function unhideCalculateButton() {
-    const divBottom = document.getElementById("cbc-div");
+    const divBottom = document.getElementById("calculation-options-container");
     if (divBottom && divBottom.hidden) {
         divBottom.hidden = false;
     }
@@ -99,13 +99,13 @@ function calculateMinimumCost(weightRowEdges, weightColEdges) {
     this.minimumCost = chocolateBar.calculateMinimumCost();
 }
 function setMinCostText() {
-    const minCostSpan = document.getElementById("min-cost-span");
+    const minCostSpan = document.getElementById("minimum-value");
     if (minCostSpan) {
         minCostSpan.innerText = this.minimumCost;
     }
 }
 function resetMinCostTextValue() {
-    const minCostSpan = document.getElementById("min-cost-span");
+    const minCostSpan = document.getElementById("minimum-value");
     if (minCostSpan) {
         minCostSpan.innerText = "";
     }
