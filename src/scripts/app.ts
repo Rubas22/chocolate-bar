@@ -39,7 +39,7 @@ window.onload = () => {
     );
 
     this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
-    this.setMinCostText();
+    this.setMinimumCost();
   });
 
   costsForm?.addEventListener("reset", () => {
@@ -83,8 +83,7 @@ function setWeightInputs(): void {
   if (colInputsDiv) {
     colInputsDiv.innerHTML = "";
     for (let i = 0; i < numColInputs; i++) {
-      colInputsDiv.innerHTML +=
-      `<input type='number' id='col-${i}' min='0' max='9999' required>`;
+      colInputsDiv.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
@@ -92,8 +91,7 @@ function setWeightInputs(): void {
   if (rowInputsDiv) {
     rowInputsDiv.innerHTML = "";
     for (let i = 0; i < numRowInputs; i++) {
-      rowInputsDiv.innerHTML +=
-      `<input type='number' id='row-${i}' min='0' max='9999' required>`;
+      rowInputsDiv.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
@@ -117,7 +115,7 @@ function calculateMinimumCost(
   this.minimumCost = chocolateBar.calculateMinimumCost();
 }
 
-function setMinCostText(): void {
+function setMinimumCost(): void {
   const minCostSpan = document.getElementById("minimum-value");
   if (minCostSpan) {
     minCostSpan.innerText = this.minimumCost;
