@@ -7,10 +7,10 @@ let minimumCost: number;
 
 /* BUTTON ACTIONS */
 window.onload = () => {
-  const inputSizeForm = document.getElementById("size-form");
-  const inputDisplayForm = document.getElementById("costs-form");
+  const sizeForm = document.getElementById("size-form");
+  const costsForm = document.getElementById("costs-form");
 
-  inputSizeForm?.addEventListener("submit", (event) => {
+  sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     let form: any = event.target;
     let height: number = form[0].value;
@@ -24,7 +24,7 @@ window.onload = () => {
     }
   });
 
-  inputDisplayForm?.addEventListener("submit", (event) => {
+  costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     const inputRows: any = document.querySelectorAll('[id^="row-"]');
     const inputCols: any = document.querySelectorAll('[id^="col-"]');
@@ -42,7 +42,7 @@ window.onload = () => {
     this.setMinCostText();
   });
 
-  inputDisplayForm?.addEventListener("reset", () => {
+  costsForm?.addEventListener("reset", () => {
     this.resetMinCostTextValue();
   });
 };
