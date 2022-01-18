@@ -13,16 +13,18 @@
   border: dashed rgb(197, 51, 51);
 }
 
-.chocolate-bar-container button {
+.chocolate-bar-container button,
+.chocolate-bar-container input[type="reset"] {
   padding: 0.6em;
   background-color: rgb(180, 15, 15);
   border: none;
   border-radius: 10px;
   color: aliceblue;
+  cursor: pointer;
 }
 
-.chocolate-bar-container button:hover {
+.chocolate-bar-container button:hover,
+.chocolate-bar-container input[type="reset"]:hover {
   background-color: rgb(102, 25, 25);
   color: white;
-  cursor: pointer;
 }
