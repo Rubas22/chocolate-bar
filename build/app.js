@@ -21,8 +21,8 @@ window.onload = () => {
     });
     inputDisplayForm === null || inputDisplayForm === void 0 ? void 0 : inputDisplayForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const inputRows = document.querySelectorAll("#row");
-        const inputCols = document.querySelectorAll("#col");
+        const inputRows = document.querySelectorAll('[id^="row-"]');
+        const inputCols = document.querySelectorAll('[id^="col-"]');
         const weightRowEdges = [];
         const weightColEdges = [];
         inputRows.forEach((input) => weightRowEdges.push(parseInt(input.value)));
@@ -68,7 +68,7 @@ function setWeightInputs() {
         colInputsDiv.innerHTML = "";
         for (let i = 0; i < numColInputs; i++) {
             colInputsDiv.innerHTML +=
-                "<input type='number' id='col' min='0' max='9999' required>";
+                `<input type='number' id='col-${i}' min='0' max='9999' required>`;
         }
     }
     else {
@@ -78,7 +78,7 @@ function setWeightInputs() {
         rowInputsDiv.innerHTML = "";
         for (let i = 0; i < numRowInputs; i++) {
             rowInputsDiv.innerHTML +=
-                "<input type='number' id='row' min='0' max='9999' required>";
+                `<input type='number' id='row-${i}' min='0' max='9999' required>`;
         }
     }
     else {

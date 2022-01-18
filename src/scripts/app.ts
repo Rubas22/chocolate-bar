@@ -26,8 +26,8 @@ window.onload = () => {
 
   inputDisplayForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const inputRows: any = document.querySelectorAll("#row");
-    const inputCols: any = document.querySelectorAll("#col");
+    const inputRows: any = document.querySelectorAll('[id^="row-"]');
+    const inputCols: any = document.querySelectorAll('[id^="col-"]');
     const weightRowEdges: number[] = [];
     const weightColEdges: number[] = [];
 
@@ -84,7 +84,7 @@ function setWeightInputs(): void {
     colInputsDiv.innerHTML = "";
     for (let i = 0; i < numColInputs; i++) {
       colInputsDiv.innerHTML +=
-        "<input type='number' id='col' min='0' max='9999' required>";
+      `<input type='number' id='col-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
@@ -93,7 +93,7 @@ function setWeightInputs(): void {
     rowInputsDiv.innerHTML = "";
     for (let i = 0; i < numRowInputs; i++) {
       rowInputsDiv.innerHTML +=
-        "<input type='number' id='row' min='0' max='9999' required>";
+      `<input type='number' id='row-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
