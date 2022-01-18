@@ -101,7 +101,7 @@ function setWeightInputs(): void {
 }
 
 function unhideCalculateButton(): void {
-  const divBottom = document.getElementById("calculation-options-container");
+  const divBottom = document.getElementById("calculation-options");
   if (divBottom && divBottom.hidden) {
     divBottom.hidden = false;
   } else if (!divBottom) {
