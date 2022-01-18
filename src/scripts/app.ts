@@ -26,15 +26,15 @@ window.onload = () => {
 
   costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const inputRows: any = document.querySelectorAll('[id^="row-"]');
-    const inputCols: any = document.querySelectorAll('[id^="col-"]');
+    const rowInputs: any = document.querySelectorAll('[id^="row-"]');
+    const colInputs: any = document.querySelectorAll('[id^="col-"]');
     const weightRowEdges: number[] = [];
     const weightColEdges: number[] = [];
 
-    inputRows.forEach((input: { value: string }) =>
+    rowInputs.forEach((input: { value: string }) =>
       weightRowEdges.push(parseInt(input.value))
     );
-    inputCols.forEach((input: { value: string }) =>
+    colInputs.forEach((input: { value: string }) =>
       weightColEdges.push(parseInt(input.value))
     );
 

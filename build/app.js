@@ -21,12 +21,12 @@ window.onload = () => {
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const inputRows = document.querySelectorAll('[id^="row-"]');
-        const inputCols = document.querySelectorAll('[id^="col-"]');
+        const rowInputs = document.querySelectorAll('[id^="row-"]');
+        const colInputs = document.querySelectorAll('[id^="col-"]');
         const weightRowEdges = [];
         const weightColEdges = [];
-        inputRows.forEach((input) => weightRowEdges.push(parseInt(input.value)));
-        inputCols.forEach((input) => weightColEdges.push(parseInt(input.value)));
+        rowInputs.forEach((input) => weightRowEdges.push(parseInt(input.value)));
+        colInputs.forEach((input) => weightColEdges.push(parseInt(input.value)));
         this.calculateMinimumCost(weightRowEdges, weightColEdges);
         this.setMinCostText();
     });
