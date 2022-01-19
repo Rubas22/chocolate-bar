@@ -1,5 +1,9 @@
 // ts main file
 
+// TO DO: decide beetwen cost and weight
+// TO DO: fix button borde
+// TO DO: create variable for error message ??
+
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
@@ -78,11 +82,11 @@ function deployChocolateBar(): void {
 function deployWeightInputs(): void {
   const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
   const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-  const numColEdges = this.chocolateBarWidth - 1;
-  const numRowEdges = this.chocolateBarHeight - 1;
+  const numOfColEdges = this.chocolateBarWidth - 1;
+  const numOfRowEdges = this.chocolateBarHeight - 1;
   if (colEdgesWeightsWraper) {
     colEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numColEdges; i++) {
+    for (let i = 0; i < numOfColEdges; i++) {
       colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
     }
   } else {
@@ -90,7 +94,7 @@ function deployWeightInputs(): void {
   }
   if (rowEdgesWeightsWraper) {
     rowEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numRowEdges; i++) {
+    for (let i = 0; i < numOfRowEdges; i++) {
       rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
     }
   } else {
