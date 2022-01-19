@@ -94,7 +94,7 @@ function unhideCalculationButtons() {
 }
 function calculateMinimumCost(rowEdgesWeights, colEdgesWeights) {
     const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
-    this.minimumCost = chocolateBar.calculateMinimumCost();
+    this.minimumCost = chocolateBar.minimumCost;
 }
 function setMinimumCost() {
     const minCostSpan = document.getElementById("minimum-value");
@@ -122,7 +122,7 @@ class ChocolateBar {
         const allWeights = [...this.rowEdgesWeights, ...this.colEdgesWeights];
         return allWeights.sort((a, b) => b[0] - a[0]);
     }
-    calculateMinimumCost() {
+    get minimumCost() {
         let minimumCost = 0;
         let countRows = 1;
         let countCols = 1;

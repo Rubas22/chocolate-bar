@@ -30,8 +30,12 @@ window.onload = () => {
 
   costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const rowInputs: any = document.querySelectorAll('[id^="row-edge-weight-"]');
-    const colInputs: any = document.querySelectorAll('[id^="col-edge-weight-"]');
+    const rowInputs: any = document.querySelectorAll(
+      '[id^="row-edge-weight-"]'
+    );
+    const colInputs: any = document.querySelectorAll(
+      '[id^="col-edge-weight-"]'
+    );
     const rowEdgesWeights: number[] = [];
     const colEdgesWeights: number[] = [];
 
@@ -115,7 +119,7 @@ function calculateMinimumCost(
   colEdgesWeights: number[]
 ): void {
   const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
-  this.minimumCost = chocolateBar.calculateMinimumCost();
+  this.minimumCost = chocolateBar.minimumCost;
 }
 
 function setMinimumCost(): void {
@@ -152,7 +156,7 @@ class ChocolateBar {
     return allWeights.sort((a, b) => b[0] - a[0]);
   }
 
-  calculateMinimumCost(): number {
+  get minimumCost(): number {
     let minimumCost = 0;
     let countRows = 1;
     let countCols = 1;
