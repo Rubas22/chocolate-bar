@@ -78,11 +78,11 @@ function deployChocolateBar(): void {
 function deployWeightInputs(): void {
   const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
   const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-  const numColInputs = this.chocolateBarWidth - 1;
-  const numRowInputs = this.chocolateBarHeight - 1;
+  const numColEdges = this.chocolateBarWidth - 1;
+  const numRowEdges = this.chocolateBarHeight - 1;
   if (colEdgesWeightsWraper) {
     colEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numColInputs; i++) {
+    for (let i = 0; i < numColEdges; i++) {
       colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
     }
   } else {
@@ -90,7 +90,7 @@ function deployWeightInputs(): void {
   }
   if (rowEdgesWeightsWraper) {
     rowEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numRowInputs; i++) {
+    for (let i = 0; i < numRowEdges; i++) {
       rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
     }
   } else {
