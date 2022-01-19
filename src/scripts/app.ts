@@ -103,10 +103,10 @@ function deployWeightInputs(): void {
 }
 
 function unhideCalculationButtons(): void {
-  const divBottom = document.getElementById("calculation-buttons");
-  if (divBottom && divBottom.hidden) {
-    divBottom.hidden = false;
-  } else if (!divBottom) {
+  const buttonsContainer = document.getElementById("calculation-buttons");
+  if (buttonsContainer && buttonsContainer.hidden) {
+    buttonsContainer.hidden = false;
+  } else if (!buttonsContainer) {
     window.alert("Up! somenthing when wrong");
   }
 }

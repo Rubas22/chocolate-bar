@@ -62,11 +62,11 @@ function deployChocolateBar() {
 function deployWeightInputs() {
     const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
     const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-    const numColInputs = this.chocolateBarWidth - 1;
-    const numRowInputs = this.chocolateBarHeight - 1;
+    const numOfColEdges = this.chocolateBarWidth - 1;
+    const numOfRowEdges = this.chocolateBarHeight - 1;
     if (colEdgesWeightsWraper) {
         colEdgesWeightsWraper.innerHTML = "";
-        for (let i = 0; i < numColInputs; i++) {
+        for (let i = 0; i < numOfColEdges; i++) {
             colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
         }
     }
@@ -75,7 +75,7 @@ function deployWeightInputs() {
     }
     if (rowEdgesWeightsWraper) {
         rowEdgesWeightsWraper.innerHTML = "";
-        for (let i = 0; i < numRowInputs; i++) {
+        for (let i = 0; i < numOfRowEdges; i++) {
             rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
         }
     }
@@ -84,11 +84,11 @@ function deployWeightInputs() {
     }
 }
 function unhideCalculationButtons() {
-    const divBottom = document.getElementById("calculation-buttons");
-    if (divBottom && divBottom.hidden) {
-        divBottom.hidden = false;
+    const buttonsContainer = document.getElementById("calculation-buttons");
+    if (buttonsContainer && buttonsContainer.hidden) {
+        buttonsContainer.hidden = false;
     }
-    else if (!divBottom) {
+    else if (!buttonsContainer) {
         window.alert("Up! somenthing when wrong");
     }
 }
