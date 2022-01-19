@@ -1,8 +1,9 @@
 // ts main file
 
-// TO DO: decide beetwen cost and weight
+// TO DO: decide wheter cost, weight or value
 // TO DO: fix button borde
 // TO DO: create variable for error message ??
+// TO DO: Improve funtionalities ??
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
@@ -46,7 +47,7 @@ window.onload = () => {
       colEdgesWeights.push(parseInt(input.value))
     );
     this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
-    this.setMinimumCost();
+    this.showMinimumCost();
   });
 
   costsForm?.addEventListener("reset", () => {
@@ -122,18 +123,22 @@ function calculateMinimumCost(
   this.minimumCost = chocolateBar.minimumCost;
 }
 
-function setMinimumCost(): void {
-  const minCostSpan = document.getElementById("minimum-value");
-  if (minCostSpan) {
-    minCostSpan.innerText = this.minimumCost;
+function showMinimumCost(): void {
+  const minimumValueSpan = document.getElementById("minimum-value");
+  if (minimumValueSpan) {
+    minimumValueSpan.innerText = this.minimumCost;
+  } else {
+    window.alert("Up! somenthing when wrong");
   }
 }
 
 function resetMinimumCost(): void {
-  const minCostSpan = document.getElementById("minimum-value");
-  if (minCostSpan) {
-    minCostSpan.innerText = "";
+  const minimumValueSpan = document.getElementById("minimum-value");
+  if (minimumValueSpan) {
+    minimumValueSpan.innerText = "";
     this.minimumCost = null;
+  } else {
+    window.alert("Up! somenthing when wrong");
   }
 }
 

@@ -28,7 +28,7 @@ window.onload = () => {
         rowInputs.forEach((input) => rowEdgesWeights.push(parseInt(input.value)));
         colInputs.forEach((input) => colEdgesWeights.push(parseInt(input.value)));
         this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
-        this.setMinimumCost();
+        this.showMinimumCost();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("reset", () => {
         this.resetMinimumCost();
@@ -96,17 +96,23 @@ function calculateMinimumCost(rowEdgesWeights, colEdgesWeights) {
     const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
     this.minimumCost = chocolateBar.minimumCost;
 }
-function setMinimumCost() {
-    const minCostSpan = document.getElementById("minimum-value");
-    if (minCostSpan) {
-        minCostSpan.innerText = this.minimumCost;
+function showMinimumCost() {
+    const minimumValueSpan = document.getElementById("minimum-value");
+    if (minimumValueSpan) {
+        minimumValueSpan.innerText = this.minimumCost;
+    }
+    else {
+        window.alert("Up! somenthing when wrong");
     }
 }
 function resetMinimumCost() {
-    const minCostSpan = document.getElementById("minimum-value");
-    if (minCostSpan) {
-        minCostSpan.innerText = "";
+    const minimumValueSpan = document.getElementById("minimum-value");
+    if (minimumValueSpan) {
+        minimumValueSpan.innerText = "";
         this.minimumCost = null;
+    }
+    else {
+        window.alert("Up! somenthing when wrong");
     }
 }
 class ChocolateBar {
