@@ -60,15 +60,15 @@ function deployChocolateBarContainer(): void {
 }
 
 function deployChocolateBar(): void {
-  const chocBarDiv = document.getElementById("chocolate-bar");
+  const chocolateBar = document.getElementById("chocolate-bar");
   let row = "";
   for (let i = 0; i < this.chocolateBarWidth; i++) {
     row += "<div class='piece'></div>";
   }
-  if (chocBarDiv) {
-    chocBarDiv.innerHTML = "";
+  if (chocolateBar) {
+    chocolateBar.innerHTML = "";
     for (let i = 0; i < this.chocolateBarHeight; i++) {
-      chocBarDiv.innerHTML += "<div class='row'>" + row + "</div>";
+      chocolateBar.innerHTML += "<div class='row'>" + row + "</div>";
     }
   } else {
     window.alert("Up! somenthing when wrong");
