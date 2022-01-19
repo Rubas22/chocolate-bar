@@ -4,6 +4,7 @@
 // TO DO: fix button borde
 // TO DO: create variable for error message ??
 // TO DO: Improve funtionalities ??
+// TO DO: Re-estructure ChocolateBar ??
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
@@ -144,34 +145,34 @@ function resetMinimumCost(): void {
 
 /* MODELS */
 class ChocolateBar {
-  rowEdgesWeights: [number, "row"][];
-  colEdgesWeights: [number, "col"][];
+  rowEdges: { weight: number; orientation: "row" }[];
+  colEdges: { weight: number; orientation: "col" }[];
 
   constructor(rowEdgesWeights: number[], colEdgesWeights: number[]) {
-    this.rowEdgesWeights = rowEdgesWeights.map((rowEdge) => {
-      return [rowEdge, "row"];
+    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+      return { weight: rowEdgeWeight, orientation: "row" };
     });
-    this.colEdgesWeights = colEdgesWeights.map((colEdge) => {
-      return [colEdge, "col"];
+    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+      return { weight: colEdgeWeight, orientation: "col" };
     });
   }
 
-  get allWeightsSorted(): [number, string][] {
-    const allWeights = [...this.rowEdgesWeights, ...this.colEdgesWeights];
-    return allWeights.sort((a, b) => b[0] - a[0]);
+  get allEdgesSorted(): { weight: number; orientation: "row" | "col" }[] {
+    const allWeights = [...this.rowEdges, ...this.colEdges];
+    return allWeights.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
   }
 
   get minimumCost(): number {
     let minimumCost = 0;
-    let countRows = 1;
-    let countCols = 1;
-    this.allWeightsSorted.forEach((weight) => {
-      if (weight[1] == "row") {
-        countRows++;
-        minimumCost += weight[0] * countCols;
+    let rowsCount = 1;
+    let colsCount = 1;
+    this.allEdgesSorted.forEach((edge) => {
+      if (edge.orientation == "row") {
+        rowsCount++;
+        minimumCost += edge.weight * colsCount;
       } else {
-        countCols++;
-        minimumCost += weight[0] * countRows;
+        colsCount++;
+        minimumCost += edge.weight * rowsCount;
       }
     });
     return minimumCost;

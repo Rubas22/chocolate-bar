@@ -117,29 +117,29 @@ function resetMinimumCost() {
 }
 class ChocolateBar {
     constructor(rowEdgesWeights, colEdgesWeights) {
-        this.rowEdgesWeights = rowEdgesWeights.map((rowEdge) => {
-            return [rowEdge, "row"];
+        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+            return { weight: rowEdgeWeight, orientation: "row" };
         });
-        this.colEdgesWeights = colEdgesWeights.map((colEdge) => {
-            return [colEdge, "col"];
+        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+            return { weight: colEdgeWeight, orientation: "col" };
         });
     }
-    get allWeightsSorted() {
-        const allWeights = [...this.rowEdgesWeights, ...this.colEdgesWeights];
-        return allWeights.sort((a, b) => b[0] - a[0]);
+    get allEdgesSorted() {
+        const allWeights = [...this.rowEdges, ...this.colEdges];
+        return allWeights.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
     }
     get minimumCost() {
         let minimumCost = 0;
-        let countRows = 1;
-        let countCols = 1;
-        this.allWeightsSorted.forEach((weight) => {
-            if (weight[1] == "row") {
-                countRows++;
-                minimumCost += weight[0] * countCols;
+        let rowsCount = 1;
+        let colsCount = 1;
+        this.allEdgesSorted.forEach((edge) => {
+            if (edge.orientation == "row") {
+                rowsCount++;
+                minimumCost += edge.weight * colsCount;
             }
             else {
-                countCols++;
-                minimumCost += weight[0] * countRows;
+                colsCount++;
+                minimumCost += edge.weight * rowsCount;
             }
         });
         return minimumCost;
