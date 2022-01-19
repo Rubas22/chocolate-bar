@@ -21,8 +21,8 @@ window.onload = () => {
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const rowInputs = document.querySelectorAll('[id^="row-"]');
-        const colInputs = document.querySelectorAll('[id^="col-"]');
+        const rowInputs = document.querySelectorAll('[id^="row-edge-weight-"]');
+        const colInputs = document.querySelectorAll('[id^="col-edge-weight-"]');
         const rowEdgesWeights = [];
         const colEdgesWeights = [];
         rowInputs.forEach((input) => rowEdgesWeights.push(parseInt(input.value)));
@@ -67,7 +67,7 @@ function deployWeightInputs() {
     if (colEdgesWeightsWraper) {
         colEdgesWeightsWraper.innerHTML = "";
         for (let i = 0; i < numOfColEdges; i++) {
-            colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
+            colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-edge-weight-${i}' min='0' max='9999' required>`;
         }
     }
     else {
@@ -76,7 +76,7 @@ function deployWeightInputs() {
     if (rowEdgesWeightsWraper) {
         rowEdgesWeightsWraper.innerHTML = "";
         for (let i = 0; i < numOfRowEdges; i++) {
-            rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
+            rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-edge-weight-${i}' min='0' max='9999' required>`;
         }
     }
     else {

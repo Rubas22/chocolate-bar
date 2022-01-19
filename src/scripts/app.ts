@@ -30,8 +30,8 @@ window.onload = () => {
 
   costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const rowInputs: any = document.querySelectorAll('[id^="row-"]');
-    const colInputs: any = document.querySelectorAll('[id^="col-"]');
+    const rowInputs: any = document.querySelectorAll('[id^="row-edge-weight-"]');
+    const colInputs: any = document.querySelectorAll('[id^="col-edge-weight-"]');
     const rowEdgesWeights: number[] = [];
     const colEdgesWeights: number[] = [];
 
@@ -41,7 +41,6 @@ window.onload = () => {
     colInputs.forEach((input: { value: string }) =>
       colEdgesWeights.push(parseInt(input.value))
     );
-
     this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
     this.setMinimumCost();
   });
@@ -87,7 +86,7 @@ function deployWeightInputs(): void {
   if (colEdgesWeightsWraper) {
     colEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numOfColEdges; i++) {
-      colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
+      colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-edge-weight-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
@@ -95,7 +94,7 @@ function deployWeightInputs(): void {
   if (rowEdgesWeightsWraper) {
     rowEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numOfRowEdges; i++) {
-      rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
+      rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-edge-weight-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
