@@ -18,7 +18,7 @@
   text-decoration: underline;
 }
 
-.cols-wraper {
+.col-edges-weights {
   grid-area: colInputs;
   justify-self: start;
   width: 100%;
@@ -27,7 +27,7 @@
   justify-content: space-evenly;
 }
 
-.rows-wraper {
+.row-edges-weights {
   grid-area: rowInputs;
   justify-self: end;
   align-self: center;

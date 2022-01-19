@@ -76,22 +76,22 @@ function deployChocolateBar(): void {
 }
 
 function deployWeightInputs(): void {
-  const colInputsDiv = document.getElementById("cols-wraper");
-  const rowInputsDiv = document.getElementById("rows-wraper");
+  const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
+  const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
   const numColInputs = this.chocolateBarWidth - 1;
   const numRowInputs = this.chocolateBarHeight - 1;
-  if (colInputsDiv) {
-    colInputsDiv.innerHTML = "";
+  if (colEdgesWeightsWraper) {
+    colEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numColInputs; i++) {
-      colInputsDiv.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
+      colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
   }
-  if (rowInputsDiv) {
-    rowInputsDiv.innerHTML = "";
+  if (rowEdgesWeightsWraper) {
+    rowEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numRowInputs; i++) {
-      rowInputsDiv.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
+      rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-${i}' min='0' max='9999' required>`;
     }
   } else {
     window.alert("Up! somenthing when wrong");
