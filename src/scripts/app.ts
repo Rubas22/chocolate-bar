@@ -2,7 +2,6 @@
 
 // TO DO: decide wheter cost, weight or value
 // TO DO: fix button borde
-// TO DO: Improve funtionalities ??
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
@@ -19,8 +18,8 @@ window.onload = () => {
   sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     let form: any = event.target;
-    let height: number = form[0].value;
-    let width: number = form[1].value;
+    let height: number = form["height"].value;
+    let width: number = form["width"].value;
     if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
       this.setChocolateBarSize(height, width);
       this.deployChocolateBarContainer();

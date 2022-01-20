@@ -9,8 +9,8 @@ window.onload = () => {
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         let form = event.target;
-        let height = form[0].value;
-        let width = form[1].value;
+        let height = form["height"].value;
+        let width = form["width"].value;
         if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
             this.setChocolateBarSize(height, width);
             this.deployChocolateBarContainer();
