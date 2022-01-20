@@ -2,6 +2,7 @@
 var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
 let minimumCost;
+const errorMessage = "Ups! somenthing went wrong. Page is going to be reload";
 window.onload = () => {
     const sizeForm = document.getElementById("size-form");
     const costsForm = document.getElementById("costs-form");
@@ -56,7 +57,7 @@ function deployChocolateBar() {
         }
     }
     else {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
 }
 function deployWeightInputs() {
@@ -71,7 +72,7 @@ function deployWeightInputs() {
         }
     }
     else {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
     if (rowEdgesWeightsWraper) {
         rowEdgesWeightsWraper.innerHTML = "";
@@ -80,7 +81,7 @@ function deployWeightInputs() {
         }
     }
     else {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
 }
 function unhideCalculationButtons() {
@@ -89,7 +90,7 @@ function unhideCalculationButtons() {
         buttonsContainer.hidden = false;
     }
     else if (!buttonsContainer) {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
 }
 function calculateMinimumCost(rowEdgesWeights, colEdgesWeights) {
@@ -102,7 +103,7 @@ function showMinimumCost() {
         minimumValueSpan.innerText = this.minimumCost;
     }
     else {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
 }
 function resetMinimumCost() {
@@ -112,8 +113,12 @@ function resetMinimumCost() {
         this.minimumCost = null;
     }
     else {
-        window.alert("Up! somenthing when wrong");
+        this.manageError();
     }
+}
+function manageError() {
+    window.alert(errorMessage);
+    window.location.reload();
 }
 class ChocolateBar {
     constructor(rowEdgesWeights, colEdgesWeights) {

@@ -2,13 +2,14 @@
 
 // TO DO: decide wheter cost, weight or value
 // TO DO: fix button borde
-// TO DO: create variable for error message ??
 // TO DO: Improve funtionalities ??
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
 let minimumCost: number;
+const errorMessage: string =
+  "Ups! somenthing went wrong. Page is going to be reload";
 
 /* BUTTON ACTIONS */
 window.onload = () => {
@@ -79,7 +80,7 @@ function deployChocolateBar(): void {
       chocolateBar.innerHTML += "<div class='row'>" + row + "</div>";
     }
   } else {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
 }
 
@@ -94,7 +95,7 @@ function deployWeightInputs(): void {
       colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-edge-weight-${i}' min='0' max='9999' required>`;
     }
   } else {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
   if (rowEdgesWeightsWraper) {
     rowEdgesWeightsWraper.innerHTML = "";
@@ -102,7 +103,7 @@ function deployWeightInputs(): void {
       rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-edge-weight-${i}' min='0' max='9999' required>`;
     }
   } else {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
 }
 
@@ -111,7 +112,7 @@ function unhideCalculationButtons(): void {
   if (buttonsContainer && buttonsContainer.hidden) {
     buttonsContainer.hidden = false;
   } else if (!buttonsContainer) {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
 }
 
@@ -128,7 +129,7 @@ function showMinimumCost(): void {
   if (minimumValueSpan) {
     minimumValueSpan.innerText = this.minimumCost;
   } else {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
 }
 
@@ -138,8 +139,13 @@ function resetMinimumCost(): void {
     minimumValueSpan.innerText = "";
     this.minimumCost = null;
   } else {
-    window.alert("Up! somenthing when wrong");
+    this.manageError();
   }
+}
+
+function manageError(): void {
+  window.alert(errorMessage);
+  window.location.reload();
 }
 
 /* MODELS */
