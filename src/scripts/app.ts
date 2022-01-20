@@ -1,7 +1,6 @@
 // ts main file
 
 // TO DO: decide wheter cost, weight or value
-// TO DO: fix button borde
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
