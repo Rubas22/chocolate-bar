@@ -4,7 +4,6 @@
 // TO DO: fix button borde
 // TO DO: create variable for error message ??
 // TO DO: Improve funtionalities ??
-// TO DO: Re-estructure ChocolateBar ??
 
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
@@ -145,28 +144,26 @@ function resetMinimumCost(): void {
 
 /* MODELS */
 class ChocolateBar {
-  rowEdges: { weight: number; orientation: "row" }[];
-  colEdges: { weight: number; orientation: "col" }[];
-
+  edges: Edge[];
   constructor(rowEdgesWeights: number[], colEdgesWeights: number[]) {
-    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-      return { weight: rowEdgeWeight, orientation: "row" };
+    const rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+      return new Edge(rowEdgeWeight, "row");
     });
-    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-      return { weight: colEdgeWeight, orientation: "col" };
+    const colEdges = colEdgesWeights.map((colEdgeWeight) => {
+      return new Edge(colEdgeWeight, "col");
     });
+    this.edges = [...rowEdges, ...colEdges];
   }
 
-  get allEdgesSorted(): { weight: number; orientation: "row" | "col" }[] {
-    const allWeights = [...this.rowEdges, ...this.colEdges];
-    return allWeights.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
+  get sortedEdges(): Edge[] {
+    return this.edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
   }
 
   get minimumCost(): number {
     let minimumCost = 0;
     let rowsCount = 1;
     let colsCount = 1;
-    this.allEdgesSorted.forEach((edge) => {
+    this.sortedEdges.forEach((edge) => {
       if (edge.orientation == "row") {
         rowsCount++;
         minimumCost += edge.weight * colsCount;
@@ -176,5 +173,19 @@ class ChocolateBar {
       }
     });
     return minimumCost;
+  }
+}
+
+interface Edge {
+  weight: number;
+  orientation: "row" | "col";
+}
+
+class Edge implements Edge {
+  weight: number;
+  orientation: "row" | "col";
+  constructor(weight: number, orientation: "row" | "col") {
+    this.weight = weight;
+    this.orientation = orientation;
   }
 }

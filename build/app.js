@@ -117,22 +117,22 @@ function resetMinimumCost() {
 }
 class ChocolateBar {
     constructor(rowEdgesWeights, colEdgesWeights) {
-        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-            return { weight: rowEdgeWeight, orientation: "row" };
+        const rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+            return new Edge(rowEdgeWeight, "row");
         });
-        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-            return { weight: colEdgeWeight, orientation: "col" };
+        const colEdges = colEdgesWeights.map((colEdgeWeight) => {
+            return new Edge(colEdgeWeight, "col");
         });
+        this.edges = [...rowEdges, ...colEdges];
     }
-    get allEdgesSorted() {
-        const allWeights = [...this.rowEdges, ...this.colEdges];
-        return allWeights.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
+    get sortedEdges() {
+        return this.edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
     }
     get minimumCost() {
         let minimumCost = 0;
         let rowsCount = 1;
         let colsCount = 1;
-        this.allEdgesSorted.forEach((edge) => {
+        this.sortedEdges.forEach((edge) => {
             if (edge.orientation == "row") {
                 rowsCount++;
                 minimumCost += edge.weight * colsCount;
@@ -143,5 +143,11 @@ class ChocolateBar {
             }
         });
         return minimumCost;
+    }
+}
+class Edge {
+    constructor(weight, orientation) {
+        this.weight = weight;
+        this.orientation = orientation;
     }
 }
