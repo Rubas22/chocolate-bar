@@ -16,9 +16,9 @@ window.onload = () => {
 
   sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    let form: any = event.target;
-    let height: number = form["height"].value;
-    let width: number = form["width"].value;
+    const form: any = event.target;
+    const height: number = form["height"].value;
+    const width: number = form["width"].value;
     if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
       this.setChocolateBarSize(height, width);
       this.deployChocolateBarContainer();
@@ -30,12 +30,8 @@ window.onload = () => {
 
   costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const rowInputs: any = document.querySelectorAll(
-      '[id^="row-edge-weight-"]'
-    );
-    const colInputs: any = document.querySelectorAll(
-      '[id^="col-edge-weight-"]'
-    );
+    const rowInputs: any = document.getElementsByName("row");
+    const colInputs: any = document.getElementsByName("col");
     const rowEdgesWeights: number[] = [];
     const colEdgesWeights: number[] = [];
 
@@ -90,7 +86,7 @@ function deployWeightInputs(): void {
   if (colEdgesWeightsWraper) {
     colEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numOfColEdges; i++) {
-      colEdgesWeightsWraper.innerHTML += `<input type='number' id='col-edge-weight-${i}' min='0' max='9999' required>`;
+      colEdgesWeightsWraper.innerHTML += `<input type='number' name='col' min='0' max='9999' required>`;
     }
   } else {
     this.manageError();
@@ -98,7 +94,7 @@ function deployWeightInputs(): void {
   if (rowEdgesWeightsWraper) {
     rowEdgesWeightsWraper.innerHTML = "";
     for (let i = 0; i < numOfRowEdges; i++) {
-      rowEdgesWeightsWraper.innerHTML += `<input type='number' id='row-edge-weight-${i}' min='0' max='9999' required>`;
+      rowEdgesWeightsWraper.innerHTML += `<input type='number' name='row' min='0' max='9999' required>`;
     }
   } else {
     this.manageError();
@@ -180,12 +176,7 @@ class ChocolateBar {
   }
 }
 
-interface Edge {
-  weight: number;
-  orientation: "row" | "col";
-}
-
-class Edge implements Edge {
+class Edge {
   weight: number;
   orientation: "row" | "col";
   constructor(weight: number, orientation: "row" | "col") {
