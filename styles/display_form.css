@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-.costs-options-container form > .chocolate-container {
+.chocolate-container {
   display: grid;
   grid-template-columns: auto 1fr;
   width: max-content;
@@ -13,9 +13,21 @@
     "rowInputs chocBar";
 }
 
-.costs-options-container form .minimum-cost-figure {
-  font-weight: bold;
-  text-decoration: underline;
+.chocolate-container input[type="number"] {
+  width: 40px;
+  text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.chocolate-container input::-webkit-outer-spin-button,
+.chocolate-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.chocolate-container input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .col-edges-weights {
@@ -50,30 +62,18 @@
   gap: 16px;
 }
 
-.costs-options-container input[type="number"] {
-  width: 40px;
-  text-align: center;
-}
-
-.calculation-buttons-container .minimum-cost-container {
+.minimum-cost-container {
   display: flex;
   gap: 8px;
   margin-left: 32px;
 }
 
-.calculation-buttons-container .figure-container{
+.figure-container {
   width: 3.5em;
   text-align: left;
 }
 
-/* Chrome, Safari, Edge, Opera */
-.costs-options-container input::-webkit-outer-spin-button,
-.costs-options-container input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-.costs-options-container input[type="number"] {
-  -moz-appearance: textfield;
+.figure-container span {
+  font-weight: bold;
+  text-decoration: underline;
 }

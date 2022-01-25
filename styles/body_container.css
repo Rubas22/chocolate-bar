@@ -8,13 +8,9 @@
   border-radius: 5px;
   border: 2px solid rgb(82, 79, 79);
 }
-.main-container input[type="number"]:focus {
-  outline: none;
-  border: dashed rgb(197, 51, 51);
-}
 
-.main-container button,
-.main-container input[type="reset"] {
+.main-container input[type="reset"],
+.main-container button {
   padding: 0.6em;
   background-color: rgb(180, 15, 15);
   border: none;
@@ -23,8 +19,13 @@
   cursor: pointer;
 }
 
-.main-container button:hover,
-.main-container input[type="reset"]:hover {
+.main-container input[type="number"]:focus {
+  outline: none;
+  border: dashed rgb(197, 51, 51);
+}
+
+.main-container input[type="reset"]:hover,
+.main-container button:hover {
   background-color: rgb(102, 25, 25);
   color: white;
 }
