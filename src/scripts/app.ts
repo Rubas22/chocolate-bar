@@ -1,7 +1,5 @@
 // ts main file
 
-// TO DO: check const getting from DOM inside functions
-
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
