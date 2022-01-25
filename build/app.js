@@ -2,7 +2,7 @@
 var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
 let minimumCost;
-const errorMessage = "Ups! somenthing went wrong. Page is going to be reload";
+const ERROR_MESSAGE = "Ups! somenthing went wrong. Page is going to be reload";
 window.onload = () => {
     const sizeForm = document.getElementById("size-form");
     const costsForm = document.getElementById("costs-form");
@@ -117,7 +117,7 @@ function resetMinimumCost() {
     }
 }
 function manageError() {
-    window.alert(errorMessage);
+    window.alert(ERROR_MESSAGE);
     window.location.reload();
 }
 class ChocolateBar {

@@ -6,7 +6,7 @@
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
 let minimumCost: number;
-const errorMessage: string =
+const ERROR_MESSAGE: string =
   "Ups! somenthing went wrong. Page is going to be reload";
 
 /* BUTTON ACTIONS */
@@ -138,7 +138,7 @@ function resetMinimumCost(): void {
 }
 
 function manageError(): void {
-  window.alert(errorMessage);
+  window.alert(ERROR_MESSAGE);
   window.location.reload();
 }
 
