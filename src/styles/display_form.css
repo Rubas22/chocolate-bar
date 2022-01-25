@@ -13,7 +13,7 @@
     "rowInputs chocBar";
 }
 
-.costs-options-container form .minimum-value {
+.costs-options-container form .minimum-cost-figure {
   font-weight: bold;
   text-decoration: underline;
 }
@@ -61,7 +61,7 @@
   margin-left: 32px;
 }
 
-.calculation-buttons-container .minimum-value-container{
+.calculation-buttons-container .figure-container{
   width: 3.5em;
   text-align: left;
 }

@@ -98,18 +98,18 @@ function calculateMinimumCost(rowEdgesWeights, colEdgesWeights) {
     this.minimumCost = chocolateBar.minimumCost;
 }
 function showMinimumCost() {
-    const minimumValueSpan = document.getElementById("minimum-value");
-    if (minimumValueSpan) {
-        minimumValueSpan.innerText = this.minimumCost;
+    const minimumCostFigure = document.getElementById("minimum-cost-figure");
+    if (minimumCostFigure) {
+        minimumCostFigure.innerText = this.minimumCost;
     }
     else {
         this.manageError();
     }
 }
 function resetMinimumCost() {
-    const minimumValueSpan = document.getElementById("minimum-value");
-    if (minimumValueSpan) {
-        minimumValueSpan.innerText = "";
+    const minimumCostFigure = document.getElementById("minimum-cost-figure");
+    if (minimumCostFigure) {
+        minimumCostFigure.innerText = "";
         this.minimumCost = null;
     }
     else {

@@ -1,7 +1,5 @@
 // ts main file
 
-// TO DO: decide wheter cost, weight or value
-
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
@@ -35,10 +33,10 @@ window.onload = () => {
     const rowEdgesWeights: number[] = [];
     const colEdgesWeights: number[] = [];
 
-    rowInputs.forEach((input: { value: string }) =>
+    rowInputs.forEach((input: HTMLInputElement) =>
       rowEdgesWeights.push(parseInt(input.value))
     );
-    colInputs.forEach((input: { value: string }) =>
+    colInputs.forEach((input: HTMLInputElement) =>
       colEdgesWeights.push(parseInt(input.value))
     );
     this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
@@ -119,18 +117,18 @@ function calculateMinimumCost(
 }
 
 function showMinimumCost(): void {
-  const minimumValueSpan = document.getElementById("minimum-value");
-  if (minimumValueSpan) {
-    minimumValueSpan.innerText = this.minimumCost;
+  const minimumCostFigure = document.getElementById("minimum-cost-figure");
+  if (minimumCostFigure) {
+    minimumCostFigure.innerText = this.minimumCost;
   } else {
     this.manageError();
   }
 }
 
 function resetMinimumCost(): void {
-  const minimumValueSpan = document.getElementById("minimum-value");
-  if (minimumValueSpan) {
-    minimumValueSpan.innerText = "";
+  const minimumCostFigure = document.getElementById("minimum-cost-figure");
+  if (minimumCostFigure) {
+    minimumCostFigure.innerText = "";
     this.minimumCost = null;
   } else {
     this.manageError();
