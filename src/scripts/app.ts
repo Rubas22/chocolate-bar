@@ -1,5 +1,7 @@
 // ts main file
 
+// TO DO: check const getting from DOM inside functions
+
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
@@ -9,14 +11,13 @@ const ERROR_MESSAGE: string =
 
 /* BUTTON ACTIONS */
 window.onload = () => {
-  const sizeForm = document.getElementById("size-form");
+  const sizeForm = document.getElementById("size-form") as HTMLFormElement;
   const costsForm = document.getElementById("costs-form");
 
   sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const form: any = event.target;
-    const height: number = form["height"].value;
-    const width: number = form["width"].value;
+    const height: number = sizeForm["height"].value;
+    const width: number = sizeForm["width"].value;
     if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
       this.setChocolateBarSize(height, width);
       this.deployChocolateBarContainer();
@@ -101,7 +102,7 @@ function deployWeightInputs(): void {
 
 function unhideCalculationButtons(): void {
   const buttonsContainer = document.getElementById("calculation-buttons");
-  if (buttonsContainer?.hidden) {
+  if (buttonsContainer) {
     buttonsContainer.hidden = false;
   } else {
     this.manageError();

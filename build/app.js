@@ -8,9 +8,8 @@ window.onload = () => {
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const form = event.target;
-        const height = form["height"].value;
-        const width = form["width"].value;
+        const height = sizeForm["height"].value;
+        const width = sizeForm["width"].value;
         if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
             this.setChocolateBarSize(height, width);
             this.deployChocolateBarContainer();
@@ -86,7 +85,7 @@ function deployWeightInputs() {
 }
 function unhideCalculationButtons() {
     const buttonsContainer = document.getElementById("calculation-buttons");
-    if (buttonsContainer === null || buttonsContainer === void 0 ? void 0 : buttonsContainer.hidden) {
+    if (buttonsContainer) {
         buttonsContainer.hidden = false;
     }
     else {
