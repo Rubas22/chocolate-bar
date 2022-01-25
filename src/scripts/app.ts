@@ -103,9 +103,9 @@ function deployWeightInputs(): void {
 
 function unhideCalculationButtons(): void {
   const buttonsContainer = document.getElementById("calculation-buttons");
-  if (buttonsContainer && buttonsContainer.hidden) {
+  if (buttonsContainer?.hidden) {
     buttonsContainer.hidden = false;
-  } else if (!buttonsContainer) {
+  } else {
     this.manageError();
   }
 }
@@ -167,7 +167,7 @@ class ChocolateBar {
       if (edge.orientation == "row") {
         rowsCount++;
         minimumCost += edge.weight * colsCount;
-      } else {
+      } else if (edge.orientation == "col") {
         colsCount++;
         minimumCost += edge.weight * rowsCount;
       }
