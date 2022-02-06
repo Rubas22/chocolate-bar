@@ -175,9 +175,11 @@ class ChocolateBar {
 
 class Edge {
   weight: number;
-  orientation: "row" | "col";
-  constructor(weight: number, orientation: "row" | "col") {
+  orientation: Orientation;
+  constructor(weight: number, orientation: Orientation) {
     this.weight = weight;
     this.orientation = orientation;
   }
 }
+
+type Orientation = "row" | "col";
