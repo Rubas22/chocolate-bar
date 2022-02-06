@@ -3,7 +3,7 @@ var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
 let minimumCost;
 const ERROR_MESSAGE = "Ups! somenthing went wrong. Page is going to be reload";
-window.onload = () => {
+onload = () => {
     const sizeForm = document.getElementById("size-form");
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
@@ -11,7 +11,7 @@ window.onload = () => {
         const height = sizeForm["height"].value;
         const width = sizeForm["width"].value;
         if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
-            window.alert("Size hasn't been changed, please select a new size");
+            alert("Size hasn't been changed, please select a new size");
             return;
         }
         this.setChocolateBarSize(height, width);
@@ -93,6 +93,7 @@ function showMinimumCost() {
         this.manageError();
         return;
     }
+    console.log(this);
     minimumCostFigure.innerText = this.minimumCost;
 }
 function resetMinimumCost() {
@@ -105,8 +106,8 @@ function resetMinimumCost() {
     this.minimumCost = null;
 }
 function manageError() {
-    window.alert(ERROR_MESSAGE);
-    window.location.reload();
+    alert(ERROR_MESSAGE);
+    location.reload();
 }
 class ChocolateBar {
     constructor(rowEdgesWeights, colEdgesWeights) {

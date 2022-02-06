@@ -8,7 +8,7 @@ const ERROR_MESSAGE: string =
   "Ups! somenthing went wrong. Page is going to be reload";
 
 /* BUTTON ACTIONS */
-window.onload = () => {
+onload = () => {
   const sizeForm = document.getElementById("size-form") as HTMLFormElement;
   const costsForm = document.getElementById("costs-form");
 
@@ -17,7 +17,7 @@ window.onload = () => {
     const height: number = sizeForm["height"].value;
     const width: number = sizeForm["width"].value;
     if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
-      window.alert("Size hasn't been changed, please select a new size");
+      alert("Size hasn't been changed, please select a new size");
       return;
     }
     this.setChocolateBarSize(height, width);
@@ -117,6 +117,7 @@ function showMinimumCost(): void {
     this.manageError();
     return;
   }
+  console.log(this);
   minimumCostFigure.innerText = this.minimumCost;
 }
 
@@ -131,8 +132,8 @@ function resetMinimumCost(): void {
 }
 
 function manageError(): void {
-  window.alert(ERROR_MESSAGE);
-  window.location.reload();
+  alert(ERROR_MESSAGE);
+  location.reload();
 }
 
 /* MODELS */
