@@ -16,13 +16,13 @@ window.onload = () => {
     event.preventDefault();
     const height: number = sizeForm["height"].value;
     const width: number = sizeForm["width"].value;
-    if (this.chocolateBarHeight != height || this.chocolateBarWidth != width) {
-      this.setChocolateBarSize(height, width);
-      this.deployChocolateBarContainer();
-      this.resetMinimumCost();
-    } else {
+    if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
       window.alert("Size hasn't been changed, please select a new size");
+      return;
     }
+    this.setChocolateBarSize(height, width);
+    this.deployChocolateBarContainer();
+    this.resetMinimumCost();
   });
 
   costsForm?.addEventListener("submit", (event) => {
@@ -65,13 +65,13 @@ function deployChocolateBar(): void {
   for (let i = 0; i < this.chocolateBarWidth; i++) {
     row += "<div class='piece'></div>";
   }
-  if (chocolateBar) {
-    chocolateBar.innerHTML = "";
-    for (let i = 0; i < this.chocolateBarHeight; i++) {
-      chocolateBar.innerHTML += "<div class='row'>" + row + "</div>";
-    }
-  } else {
+  if (!chocolateBar) {
     this.manageError();
+    return;
+  }
+  chocolateBar.innerHTML = "";
+  for (let i = 0; i < this.chocolateBarHeight; i++) {
+    chocolateBar.innerHTML += "<div class='row'>" + row + "</div>";
   }
 }
 
@@ -80,31 +80,27 @@ function deployWeightInputs(): void {
   const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
   const numOfColEdges = this.chocolateBarWidth - 1;
   const numOfRowEdges = this.chocolateBarHeight - 1;
-  if (colEdgesWeightsWraper) {
-    colEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numOfColEdges; i++) {
-      colEdgesWeightsWraper.innerHTML += `<input type='number' name='col' min='0' max='9999' required>`;
-    }
-  } else {
+  if (!colEdgesWeightsWraper || !rowEdgesWeightsWraper) {
     this.manageError();
+    return;
   }
-  if (rowEdgesWeightsWraper) {
-    rowEdgesWeightsWraper.innerHTML = "";
-    for (let i = 0; i < numOfRowEdges; i++) {
-      rowEdgesWeightsWraper.innerHTML += `<input type='number' name='row' min='0' max='9999' required>`;
-    }
-  } else {
-    this.manageError();
+  colEdgesWeightsWraper.innerHTML = "";
+  for (let i = 0; i < numOfColEdges; i++) {
+    colEdgesWeightsWraper.innerHTML += `<input type='number' name='col' min='0' max='9999' required>`;
+  }
+  rowEdgesWeightsWraper.innerHTML = "";
+  for (let i = 0; i < numOfRowEdges; i++) {
+    rowEdgesWeightsWraper.innerHTML += `<input type='number' name='row' min='0' max='9999' required>`;
   }
 }
 
 function unhideCalculationButtons(): void {
   const buttonsContainer = document.getElementById("calculation-buttons");
-  if (buttonsContainer) {
-    buttonsContainer.hidden = false;
-  } else {
+  if (!buttonsContainer) {
     this.manageError();
+    return;
   }
+  buttonsContainer.hidden = false;
 }
 
 function calculateMinimumCost(
@@ -117,21 +113,21 @@ function calculateMinimumCost(
 
 function showMinimumCost(): void {
   const minimumCostFigure = document.getElementById("minimum-cost-figure");
-  if (minimumCostFigure) {
-    minimumCostFigure.innerText = this.minimumCost;
-  } else {
+  if (!minimumCostFigure) {
     this.manageError();
+    return;
   }
+  minimumCostFigure.innerText = this.minimumCost;
 }
 
 function resetMinimumCost(): void {
   const minimumCostFigure = document.getElementById("minimum-cost-figure");
-  if (minimumCostFigure) {
-    minimumCostFigure.innerText = "";
-    this.minimumCost = null;
-  } else {
+  if (!minimumCostFigure) {
     this.manageError();
+    return;
   }
+  minimumCostFigure.innerText = "";
+  this.minimumCost = null;
 }
 
 function manageError(): void {
@@ -161,12 +157,15 @@ class ChocolateBar {
     let rowsCount = 1;
     let colsCount = 1;
     this.sortedEdges.forEach((edge) => {
-      if (edge.orientation == "row") {
-        rowsCount++;
-        minimumCost += edge.weight * colsCount;
-      } else if (edge.orientation == "col") {
-        colsCount++;
-        minimumCost += edge.weight * rowsCount;
+      switch (edge.orientation) {
+        case "row":
+          rowsCount++;
+          minimumCost += edge.weight * colsCount;
+          break;
+        case "col":
+          colsCount++;
+          minimumCost += edge.weight * rowsCount;
+          break;
       }
     });
     return minimumCost;
