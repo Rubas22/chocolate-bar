@@ -8,8 +8,8 @@ onload = () => {
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const height = sizeForm["height"].value;
-        const width = sizeForm["width"].value;
+        const height = parseInt(sizeForm["height"].value);
+        const width = parseInt(sizeForm["width"].value);
         if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
             alert("Size hasn't been changed, please select a new size");
             return;

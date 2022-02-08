@@ -14,8 +14,8 @@ onload = () => {
 
   sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const height: number = sizeForm["height"].value;
-    const width: number = sizeForm["width"].value;
+    const height: number = parseInt(sizeForm["height"].value);
+    const width: number = parseInt(sizeForm["width"].value);
     if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
       alert("Size hasn't been changed, please select a new size");
       return;
