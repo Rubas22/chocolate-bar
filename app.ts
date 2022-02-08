@@ -61,18 +61,27 @@ function deployChocolateBarContainer(): void {
 
 function deployChocolateBar(): void {
   const chocolateBar = document.getElementById("chocolate-bar");
-  let row = "";
-  for (let i = 0; i < this.chocolateBarWidth; i++) {
-    row += "<div class='piece'></div>";
-  }
   if (!chocolateBar) {
     this.manageError();
     return;
   }
+
+  const row = document.createElement("div");
+  row.setAttribute("class", "row");
+
+  const piece = document.createElement("div");
+  piece.setAttribute("class", "piece");
+
+  const pieces = Array(this.chocolateBarWidth).fill(piece);
+  this.appendChildren(row, pieces);
+
   chocolateBar.innerHTML = "";
-  for (let i = 0; i < this.chocolateBarHeight; i++) {
-    chocolateBar.innerHTML += "<div class='row'>" + row + "</div>";
-  }
+  const rows = Array(this.chocolateBarHeight).fill(row);
+  this.appendChildren(chocolateBar, rows);
+}
+
+function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
+  children.forEach((child) => parent.appendChild(child.cloneNode(true)));
 }
 
 function deployWeightInputs(): void {
