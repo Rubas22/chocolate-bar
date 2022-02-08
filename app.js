@@ -1,7 +1,7 @@
 "use strict";
 var chocolateBarHeight = 0;
 var chocolateBarWidth = 0;
-let minimumCost;
+let minimumCost = 0;
 const ERROR_MESSAGE = "Ups! somenthing went wrong. Page is going to be reload";
 onload = () => {
     const sizeForm = document.getElementById("size-form");
@@ -85,7 +85,7 @@ function unhideCalculationButtons() {
 }
 function calculateMinimumCost(rowEdgesWeights, colEdgesWeights) {
     const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
-    this.minimumCost = chocolateBar.minimumCost;
+    minimumCost = chocolateBar.minimumCost;
 }
 function showMinimumCost() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
@@ -93,8 +93,7 @@ function showMinimumCost() {
         this.manageError();
         return;
     }
-    console.log(this);
-    minimumCostFigure.innerText = this.minimumCost;
+    minimumCostFigure.innerText = minimumCost.toString();
 }
 function resetMinimumCost() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
@@ -103,7 +102,7 @@ function resetMinimumCost() {
         return;
     }
     minimumCostFigure.innerText = "";
-    this.minimumCost = null;
+    minimumCost = 0;
 }
 function manageError() {
     alert(ERROR_MESSAGE);

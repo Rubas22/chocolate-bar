@@ -3,7 +3,7 @@
 /* GLOBAL VARIABLES */
 var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
-let minimumCost: number;
+let minimumCost: number = 0;
 const ERROR_MESSAGE: string =
   "Ups! somenthing went wrong. Page is going to be reload";
 
@@ -108,7 +108,7 @@ function calculateMinimumCost(
   colEdgesWeights: number[]
 ): void {
   const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
-  this.minimumCost = chocolateBar.minimumCost;
+  minimumCost = chocolateBar.minimumCost;
 }
 
 function showMinimumCost(): void {
@@ -117,8 +117,7 @@ function showMinimumCost(): void {
     this.manageError();
     return;
   }
-  console.log(this);
-  minimumCostFigure.innerText = this.minimumCost;
+  minimumCostFigure.innerText = minimumCost.toString();
 }
 
 function resetMinimumCost(): void {
@@ -128,7 +127,7 @@ function resetMinimumCost(): void {
     return;
   }
   minimumCostFigure.innerText = "";
-  this.minimumCost = null;
+  minimumCost = 0;
 }
 
 function manageError(): void {
