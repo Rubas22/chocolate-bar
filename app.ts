@@ -120,6 +120,9 @@ onload = () => {
 };
 
 /* FUNCTIONS */
+function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
+  children.forEach((child) => parent.appendChild(child.cloneNode(true)));
+}
 
 function deployChocolateBar(): void {
   const chocolateBar = document.getElementById("chocolate-bar");
@@ -175,22 +178,9 @@ function deployWeightInputs(): void {
   this.appendChildren(colEdgesWeightsWraper, colInputs);
 }
 
-function unhideCalculationButtons(): void {
-  const buttonsContainer = document.getElementById("calculation-buttons");
-  if (!buttonsContainer) {
-    this.manageError();
-    return;
-  }
-  buttonsContainer.hidden = false;
-}
-
-function showMinimumCost(): void {
-  const minimumCostFigure = document.getElementById("minimum-cost-figure");
-  if (!minimumCostFigure) {
-    this.manageError();
-    return;
-  }
-  minimumCostFigure.innerText = this.chocolateBar.minimumCost;
+function manageError(): void {
+  alert(ERROR_MESSAGE);
+  location.reload();
 }
 
 function resetMinimumCostSpan(): void {
@@ -202,11 +192,20 @@ function resetMinimumCostSpan(): void {
   minimumCostFigure.innerText = "";
 }
 
-function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
-  children.forEach((child) => parent.appendChild(child.cloneNode(true)));
+function showMinimumCost(): void {
+  const minimumCostFigure = document.getElementById("minimum-cost-figure");
+  if (!minimumCostFigure) {
+    this.manageError();
+    return;
+  }
+  minimumCostFigure.innerText = this.chocolateBar.minimumCost;
 }
 
-function manageError(): void {
-  alert(ERROR_MESSAGE);
-  location.reload();
+function unhideCalculationButtons(): void {
+  const buttonsContainer = document.getElementById("calculation-buttons");
+  if (!buttonsContainer) {
+    this.manageError();
+    return;
+  }
+  buttonsContainer.hidden = false;
 }
