@@ -1,4 +1,4 @@
-class ChocolateBar {
+class ChocolateBar implements iChocolateBar {
   height: number;
   width: number;
   rowEdges: Edge[] = [];
