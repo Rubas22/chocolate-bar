@@ -1,9 +1,64 @@
 // ts main file
 
+/* MODELS */
+type Orientation = "row" | "col";
+
+class Edge {
+  weight: number;
+  orientation: Orientation;
+  constructor(weight: number, orientation: Orientation) {
+    this.weight = weight;
+    this.orientation = orientation;
+  }
+}
+
+class ChocolateBar {
+  height: number = 0;
+  width: number = 0;
+  rowEdges: Edge[] = [];
+  colEdges: Edge[] = [];
+
+  resize(height: number, width: number): void {
+    this.height = height;
+    this.width = width;
+  }
+
+  reassignEdges(rowEdgesWeights: number[], colEdgesWeights: number[]) {
+    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+      return new Edge(rowEdgeWeight, "row");
+    });
+    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+      return new Edge(colEdgeWeight, "col");
+    });
+  }
+
+  get sortedEdges(): Edge[] {
+    const edges = [...this.rowEdges, ...this.colEdges];
+    return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
+  }
+
+  get minimumCost(): number {
+    let minimumCost = 0;
+    let rowsCount = 1;
+    let colsCount = 1;
+    this.sortedEdges.forEach((edge) => {
+      switch (edge.orientation) {
+        case "row":
+          rowsCount++;
+          minimumCost += edge.weight * colsCount;
+          break;
+        case "col":
+          colsCount++;
+          minimumCost += edge.weight * rowsCount;
+          break;
+      }
+    });
+    return minimumCost;
+  }
+}
+
 /* GLOBAL VARIABLES */
-var chocolateBarHeight: number = 0;
-var chocolateBarWidth: number = 0;
-let minimumCost: number = 0;
+var chocolateBar = new ChocolateBar();
 const ERROR_MESSAGE: string =
   "Ups! something went wrong. Page is going to be reload";
 
@@ -16,11 +71,14 @@ onload = () => {
     event.preventDefault();
     const height: number = parseInt(sizeForm["height"].value);
     const width: number = parseInt(sizeForm["width"].value);
-    if (this.chocolateBarHeight == height && this.chocolateBarWidth == width) {
+    if (
+      this.chocolateBar.height == height &&
+      this.chocolateBar.width == width
+    ) {
       alert("Size hasn't been changed, please select a new size");
       return;
     }
-    this.setChocolateBarSize(height, width);
+    chocolateBar.resize(height, width);
     this.deployChocolateBarContainer();
     this.resetMinimumCost();
   });
@@ -42,7 +100,7 @@ onload = () => {
     colInputs.forEach((input: HTMLInputElement) =>
       colEdgesWeights.push(parseInt(input.value))
     );
-    this.calculateMinimumCost(rowEdgesWeights, colEdgesWeights);
+    this.chocolateBar.reassignEdges(rowEdgesWeights, colEdgesWeights);
     this.showMinimumCost();
   });
 
@@ -52,10 +110,6 @@ onload = () => {
 };
 
 /* FUNCTIONS */
-function setChocolateBarSize(height: number, width: number): void {
-  this.chocolateBarHeight = height;
-  this.chocolateBarWidth = width;
-}
 
 function deployChocolateBarContainer(): void {
   this.deployChocolateBar();
@@ -76,11 +130,11 @@ function deployChocolateBar(): void {
   const piece = document.createElement("div");
   piece.setAttribute("class", "piece");
 
-  const pieces = Array(this.chocolateBarWidth).fill(piece);
+  const pieces = Array(this.chocolateBar.width).fill(piece);
   this.appendChildren(row, pieces);
 
   chocolateBar.innerHTML = "";
-  const rows = Array(this.chocolateBarHeight).fill(row);
+  const rows = Array(this.chocolateBar.height).fill(row);
   this.appendChildren(chocolateBar, rows);
 }
 
@@ -92,8 +146,8 @@ function deployWeightInputs(): void {
     return;
   }
 
-  const numOfColEdges = this.chocolateBarWidth - 1;
-  const numOfRowEdges = this.chocolateBarHeight - 1;
+  const numOfColEdges = this.chocolateBar.width - 1;
+  const numOfRowEdges = this.chocolateBar.height - 1;
   const colInput = document.createElement("input");
   const rowInput = document.createElement("input");
   const properties = {
@@ -126,21 +180,13 @@ function unhideCalculationButtons(): void {
   buttonsContainer.hidden = false;
 }
 
-function calculateMinimumCost(
-  rowEdgesWeights: number[],
-  colEdgesWeights: number[]
-): void {
-  const chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
-  minimumCost = chocolateBar.minimumCost;
-}
-
 function showMinimumCost(): void {
   const minimumCostFigure = document.getElementById("minimum-cost-figure");
   if (!minimumCostFigure) {
     this.manageError();
     return;
   }
-  minimumCostFigure.innerText = minimumCost.toString();
+  minimumCostFigure.innerText = this.chocolateBar.minimumCost;
 }
 
 function resetMinimumCost(): void {
@@ -150,7 +196,6 @@ function resetMinimumCost(): void {
     return;
   }
   minimumCostFigure.innerText = "";
-  minimumCost = 0;
 }
 
 function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
@@ -161,51 +206,3 @@ function manageError(): void {
   alert(ERROR_MESSAGE);
   location.reload();
 }
-
-/* MODELS */
-class ChocolateBar {
-  edges: Edge[];
-  constructor(rowEdgesWeights: number[], colEdgesWeights: number[]) {
-    const rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-      return new Edge(rowEdgeWeight, "row");
-    });
-    const colEdges = colEdgesWeights.map((colEdgeWeight) => {
-      return new Edge(colEdgeWeight, "col");
-    });
-    this.edges = [...rowEdges, ...colEdges];
-  }
-
-  get sortedEdges(): Edge[] {
-    return this.edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
-  }
-
-  get minimumCost(): number {
-    let minimumCost = 0;
-    let rowsCount = 1;
-    let colsCount = 1;
-    this.sortedEdges.forEach((edge) => {
-      switch (edge.orientation) {
-        case "row":
-          rowsCount++;
-          minimumCost += edge.weight * colsCount;
-          break;
-        case "col":
-          colsCount++;
-          minimumCost += edge.weight * rowsCount;
-          break;
-      }
-    });
-    return minimumCost;
-  }
-}
-
-class Edge {
-  weight: number;
-  orientation: Orientation;
-  constructor(weight: number, orientation: Orientation) {
-    this.weight = weight;
-    this.orientation = orientation;
-  }
-}
-
-type Orientation = "row" | "col";
