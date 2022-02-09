@@ -1,5 +1,3 @@
-type Orientation = "row" | "col";
-
 class Edge implements iEdge {
   weight: number;
   orientation: Orientation;
