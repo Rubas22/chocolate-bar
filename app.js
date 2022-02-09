@@ -12,22 +12,6 @@ class ChocolateBar {
         this.rowEdges = [];
         this.colEdges = [];
     }
-    resize(height, width) {
-        this.height = height;
-        this.width = width;
-    }
-    reassignEdges(rowEdgesWeights, colEdgesWeights) {
-        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-            return new Edge(rowEdgeWeight, "row");
-        });
-        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-            return new Edge(colEdgeWeight, "col");
-        });
-    }
-    get sortedEdges() {
-        const edges = [...this.rowEdges, ...this.colEdges];
-        return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
-    }
     get minimumCost() {
         let minimumCost = 0;
         let rowsCount = 1;
@@ -45,6 +29,22 @@ class ChocolateBar {
             }
         });
         return minimumCost;
+    }
+    get sortedEdges() {
+        const edges = [...this.rowEdges, ...this.colEdges];
+        return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
+    }
+    reassignEdges(rowEdgesWeights, colEdgesWeights) {
+        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+            return new Edge(rowEdgeWeight, "row");
+        });
+        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+            return new Edge(colEdgeWeight, "col");
+        });
+    }
+    resize(height, width) {
+        this.height = height;
+        this.width = width;
     }
 }
 var chocolateBar = new ChocolateBar();
@@ -85,6 +85,9 @@ onload = () => {
         this.resetMinimumCostSpan();
     });
 };
+function appendChildren(parent, children) {
+    children.forEach((child) => parent.appendChild(child.cloneNode(true)));
+}
 function deployChocolateBar() {
     const chocolateBar = document.getElementById("chocolate-bar");
     if (!chocolateBar) {
@@ -129,21 +132,9 @@ function deployWeightInputs() {
     colEdgesWeightsWraper.innerHTML = "";
     this.appendChildren(colEdgesWeightsWraper, colInputs);
 }
-function unhideCalculationButtons() {
-    const buttonsContainer = document.getElementById("calculation-buttons");
-    if (!buttonsContainer) {
-        this.manageError();
-        return;
-    }
-    buttonsContainer.hidden = false;
-}
-function showMinimumCost() {
-    const minimumCostFigure = document.getElementById("minimum-cost-figure");
-    if (!minimumCostFigure) {
-        this.manageError();
-        return;
-    }
-    minimumCostFigure.innerText = this.chocolateBar.minimumCost;
+function manageError() {
+    alert(ERROR_MESSAGE);
+    location.reload();
 }
 function resetMinimumCostSpan() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
@@ -153,10 +144,19 @@ function resetMinimumCostSpan() {
     }
     minimumCostFigure.innerText = "";
 }
-function appendChildren(parent, children) {
-    children.forEach((child) => parent.appendChild(child.cloneNode(true)));
+function showMinimumCost() {
+    const minimumCostFigure = document.getElementById("minimum-cost-figure");
+    if (!minimumCostFigure) {
+        this.manageError();
+        return;
+    }
+    minimumCostFigure.innerText = this.chocolateBar.minimumCost;
 }
-function manageError() {
-    alert(ERROR_MESSAGE);
-    location.reload();
+function unhideCalculationButtons() {
+    const buttonsContainer = document.getElementById("calculation-buttons");
+    if (!buttonsContainer) {
+        this.manageError();
+        return;
+    }
+    buttonsContainer.hidden = false;
 }

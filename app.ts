@@ -18,25 +18,6 @@ class ChocolateBar {
   rowEdges: Edge[] = [];
   colEdges: Edge[] = [];
 
-  resize(height: number, width: number): void {
-    this.height = height;
-    this.width = width;
-  }
-
-  reassignEdges(rowEdgesWeights: number[], colEdgesWeights: number[]) {
-    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-      return new Edge(rowEdgeWeight, "row");
-    });
-    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-      return new Edge(colEdgeWeight, "col");
-    });
-  }
-
-  get sortedEdges(): Edge[] {
-    const edges = [...this.rowEdges, ...this.colEdges];
-    return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
-  }
-
   get minimumCost(): number {
     let minimumCost = 0;
     let rowsCount = 1;
@@ -54,6 +35,25 @@ class ChocolateBar {
       }
     });
     return minimumCost;
+  }
+
+  get sortedEdges(): Edge[] {
+    const edges = [...this.rowEdges, ...this.colEdges];
+    return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
+  }
+
+  reassignEdges(rowEdgesWeights: number[], colEdgesWeights: number[]) {
+    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+      return new Edge(rowEdgeWeight, "row");
+    });
+    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+      return new Edge(colEdgeWeight, "col");
+    });
+  }
+
+  resize(height: number, width: number): void {
+    this.height = height;
+    this.width = width;
   }
 }
 
