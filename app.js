@@ -79,12 +79,12 @@ function deployWeightInputs() {
     rowInput.setAttribute("name", "row");
     Object.assign(colInput, properties);
     Object.assign(rowInput, properties);
-    const colWeightInputs = Array(numOfColEdges).fill(colInput);
-    const rowWeightInputs = Array(numOfRowEdges).fill(rowInput);
+    const colInputs = Array(numOfColEdges).fill(colInput);
+    const rowInputs = Array(numOfRowEdges).fill(rowInput);
     colEdgesWeightsWraper.innerHTML = "";
-    this.appendChildren(colEdgesWeightsWraper, colWeightInputs);
+    this.appendChildren(colEdgesWeightsWraper, colInputs);
     rowEdgesWeightsWraper.innerHTML = "";
-    this.appendChildren(rowEdgesWeightsWraper, rowWeightInputs);
+    this.appendChildren(rowEdgesWeightsWraper, rowInputs);
 }
 function unhideCalculationButtons() {
     const buttonsContainer = document.getElementById("calculation-buttons");
