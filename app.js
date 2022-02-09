@@ -6,11 +6,11 @@ class Edge {
     }
 }
 class ChocolateBar {
-    constructor() {
-        this.height = 0;
-        this.width = 0;
+    constructor(height = 0, width = 0) {
         this.rowEdges = [];
         this.colEdges = [];
+        this.height = height;
+        this.width = width;
     }
     get minimumCost() {
         let minimumCost = 0;
@@ -42,10 +42,6 @@ class ChocolateBar {
             return new Edge(colEdgeWeight, "col");
         });
     }
-    resize(height, width) {
-        this.height = height;
-        this.width = width;
-    }
 }
 var chocolateBar = new ChocolateBar();
 const ERROR_MESSAGE = "Ups! something went wrong. Page is going to be reload";
@@ -65,7 +61,7 @@ onload = () => {
             alert("Size hasn't been changed, please select a new size");
             return;
         }
-        this.chocolateBar.resize(height, width);
+        this.chocolateBar = new ChocolateBar(height, width);
         this.deployChocolateBar();
         this.deployWeightInputs();
         this.resetMinimumCostSpan();

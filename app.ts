@@ -13,10 +13,14 @@ class Edge {
 }
 
 class ChocolateBar {
-  height: number = 0;
-  width: number = 0;
+  height: number;
+  width: number;
   rowEdges: Edge[] = [];
   colEdges: Edge[] = [];
+  constructor(height: number = 0, width: number = 0) {
+    this.height = height;
+    this.width = width;
+  }
 
   get minimumCost(): number {
     let minimumCost = 0;
@@ -50,11 +54,6 @@ class ChocolateBar {
       return new Edge(colEdgeWeight, "col");
     });
   }
-
-  resize(height: number, width: number): void {
-    this.height = height;
-    this.width = width;
-  }
 }
 
 /* GLOBAL VARIABLES */
@@ -87,7 +86,7 @@ onload = () => {
       alert("Size hasn't been changed, please select a new size");
       return;
     }
-    this.chocolateBar.resize(height, width);
+    this.chocolateBar = new ChocolateBar(height, width);
     this.deployChocolateBar();
     this.deployWeightInputs();
     this.resetMinimumCostSpan();
