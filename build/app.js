@@ -1,26 +1,25 @@
 "use strict";
-var chocolateBar = new ChocolateBar();
+let chocolateBar = new ChocolateBar();
 const ERROR_MESSAGE = "Ups! something went wrong. Page is going to be reload";
 onload = () => {
     const sizeForm = document.getElementById("size-form");
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        this.unhideCalculationButtons();
+        unhideCalculationButtons();
     }, { once: true });
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const height = parseInt(sizeForm["height"].value);
         const width = parseInt(sizeForm["width"].value);
-        if (this.chocolateBar.height == height &&
-            this.chocolateBar.width == width) {
+        if (chocolateBar.height == height && chocolateBar.width == width) {
             alert("Size hasn't been changed, please select a new size");
             return;
         }
-        this.chocolateBar = new ChocolateBar(height, width);
-        this.deployChocolateBar();
-        this.deployWeightInputs();
-        this.resetMinimumCostSpan();
+        chocolateBar = new ChocolateBar(height, width);
+        deployChocolateBar();
+        deployWeightInputs();
+        resetMinimumCostSpan();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -30,42 +29,42 @@ onload = () => {
         const colEdgesWeights = [];
         rowInputs.forEach((input) => rowEdgesWeights.push(parseInt(input.value)));
         colInputs.forEach((input) => colEdgesWeights.push(parseInt(input.value)));
-        this.chocolateBar.reassignEdges(rowEdgesWeights, colEdgesWeights);
-        this.showMinimumCost();
+        chocolateBar.reassignEdges(rowEdgesWeights, colEdgesWeights);
+        showMinimumCost();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("reset", () => {
-        this.chocolateBar.reassignEdges([], []);
-        this.resetMinimumCostSpan();
+        chocolateBar.reassignEdges([], []);
+        resetMinimumCostSpan();
     });
 };
 function appendChildren(parent, children) {
     children.forEach((child) => parent.appendChild(child.cloneNode(true)));
 }
 function deployChocolateBar() {
-    const chocolateBar = document.getElementById("chocolate-bar");
-    if (!chocolateBar) {
-        this.manageError();
+    const chocolateBarDiv = document.getElementById("chocolate-bar");
+    if (!chocolateBarDiv) {
+        manageError();
         return;
     }
     const piece = document.createElement("div");
     piece.setAttribute("class", "piece");
     const row = document.createElement("div");
     row.setAttribute("class", "row");
-    const pieces = Array(this.chocolateBar.width).fill(piece);
-    this.appendChildren(row, pieces);
-    chocolateBar.innerHTML = "";
-    const rows = Array(this.chocolateBar.height).fill(row);
-    this.appendChildren(chocolateBar, rows);
+    const pieces = Array(chocolateBar.width).fill(piece);
+    appendChildren(row, pieces);
+    chocolateBarDiv.innerHTML = "";
+    const rows = Array(chocolateBar.height).fill(row);
+    appendChildren(chocolateBarDiv, rows);
 }
 function deployWeightInputs() {
     const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
     const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
     if (!rowEdgesWeightsWraper || !colEdgesWeightsWraper) {
-        this.manageError();
+        manageError();
         return;
     }
-    const numOfRowEdges = this.chocolateBar.height - 1;
-    const numOfColEdges = this.chocolateBar.width - 1;
+    const numOfRowEdges = chocolateBar.height - 1;
+    const numOfColEdges = chocolateBar.width - 1;
     const rowInput = document.createElement("input");
     const colInput = document.createElement("input");
     const properties = {
@@ -81,9 +80,9 @@ function deployWeightInputs() {
     const rowInputs = Array(numOfRowEdges).fill(rowInput);
     const colInputs = Array(numOfColEdges).fill(colInput);
     rowEdgesWeightsWraper.innerHTML = "";
-    this.appendChildren(rowEdgesWeightsWraper, rowInputs);
+    appendChildren(rowEdgesWeightsWraper, rowInputs);
     colEdgesWeightsWraper.innerHTML = "";
-    this.appendChildren(colEdgesWeightsWraper, colInputs);
+    appendChildren(colEdgesWeightsWraper, colInputs);
 }
 function manageError() {
     alert(ERROR_MESSAGE);
@@ -92,7 +91,7 @@ function manageError() {
 function resetMinimumCostSpan() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
     if (!minimumCostFigure) {
-        this.manageError();
+        manageError();
         return;
     }
     minimumCostFigure.innerText = "";
@@ -100,15 +99,15 @@ function resetMinimumCostSpan() {
 function showMinimumCost() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
     if (!minimumCostFigure) {
-        this.manageError();
+        manageError();
         return;
     }
-    minimumCostFigure.innerText = this.chocolateBar.minimumCost;
+    minimumCostFigure.innerText = chocolateBar.minimumCost.toString();
 }
 function unhideCalculationButtons() {
     const buttonsContainer = document.getElementById("calculation-buttons");
     if (!buttonsContainer) {
-        this.manageError();
+        manageError();
         return;
     }
     buttonsContainer.hidden = false;
