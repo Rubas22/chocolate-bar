@@ -68,7 +68,7 @@ onload = () => {
         this.chocolateBar.resize(height, width);
         this.deployChocolateBar();
         this.deployWeightInputs();
-        this.resetMinimumCost();
+        this.resetMinimumCostSpan();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -82,7 +82,7 @@ onload = () => {
         this.showMinimumCost();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("reset", () => {
-        this.resetMinimumCost();
+        this.resetMinimumCostSpan();
     });
 };
 function deployChocolateBar() {
@@ -145,7 +145,7 @@ function showMinimumCost() {
     }
     minimumCostFigure.innerText = this.chocolateBar.minimumCost;
 }
-function resetMinimumCost() {
+function resetMinimumCostSpan() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");
     if (!minimumCostFigure) {
         this.manageError();
