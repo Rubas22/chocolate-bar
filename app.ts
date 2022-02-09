@@ -67,6 +67,15 @@ onload = () => {
   const sizeForm = document.getElementById("size-form") as HTMLFormElement;
   const costsForm = document.getElementById("costs-form");
 
+  sizeForm?.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
+      this.unhideCalculationButtons();
+    },
+    { once: true }
+  );
+
   sizeForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     const height: number = parseInt(sizeForm["height"].value);
@@ -78,8 +87,9 @@ onload = () => {
       alert("Size hasn't been changed, please select a new size");
       return;
     }
-    chocolateBar.resize(height, width);
-    this.deployChocolateBarContainer();
+    this.chocolateBar.resize(height, width);
+    this.deployChocolateBar();
+    this.deployWeightInputs();
     this.resetMinimumCost();
   });
 
@@ -110,12 +120,6 @@ onload = () => {
 };
 
 /* FUNCTIONS */
-
-function deployChocolateBarContainer(): void {
-  this.deployChocolateBar();
-  this.deployWeightInputs();
-  this.unhideCalculationButtons();
-}
 
 function deployChocolateBar(): void {
   const chocolateBar = document.getElementById("chocolate-bar");

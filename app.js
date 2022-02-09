@@ -54,6 +54,10 @@ onload = () => {
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
         event.preventDefault();
+        this.unhideCalculationButtons();
+    }, { once: true });
+    sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
+        event.preventDefault();
         const height = parseInt(sizeForm["height"].value);
         const width = parseInt(sizeForm["width"].value);
         if (this.chocolateBar.height == height &&
@@ -61,8 +65,9 @@ onload = () => {
             alert("Size hasn't been changed, please select a new size");
             return;
         }
-        chocolateBar.resize(height, width);
-        this.deployChocolateBarContainer();
+        this.chocolateBar.resize(height, width);
+        this.deployChocolateBar();
+        this.deployWeightInputs();
         this.resetMinimumCost();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("submit", (event) => {
@@ -80,21 +85,16 @@ onload = () => {
         this.resetMinimumCost();
     });
 };
-function deployChocolateBarContainer() {
-    this.deployChocolateBar();
-    this.deployWeightInputs();
-    this.unhideCalculationButtons();
-}
 function deployChocolateBar() {
     const chocolateBar = document.getElementById("chocolate-bar");
     if (!chocolateBar) {
         this.manageError();
         return;
     }
-    const row = document.createElement("div");
-    row.setAttribute("class", "row");
     const piece = document.createElement("div");
     piece.setAttribute("class", "piece");
+    const row = document.createElement("div");
+    row.setAttribute("class", "row");
     const pieces = Array(this.chocolateBar.width).fill(piece);
     this.appendChildren(row, pieces);
     chocolateBar.innerHTML = "";
@@ -102,32 +102,32 @@ function deployChocolateBar() {
     this.appendChildren(chocolateBar, rows);
 }
 function deployWeightInputs() {
-    const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
     const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-    if (!colEdgesWeightsWraper || !rowEdgesWeightsWraper) {
+    const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
+    if (!rowEdgesWeightsWraper || !colEdgesWeightsWraper) {
         this.manageError();
         return;
     }
-    const numOfColEdges = this.chocolateBar.width - 1;
     const numOfRowEdges = this.chocolateBar.height - 1;
-    const colInput = document.createElement("input");
+    const numOfColEdges = this.chocolateBar.width - 1;
     const rowInput = document.createElement("input");
+    const colInput = document.createElement("input");
     const properties = {
         type: "number",
         min: 0,
         max: 9999,
         required: true,
     };
-    colInput.setAttribute("name", "col");
     rowInput.setAttribute("name", "row");
-    Object.assign(colInput, properties);
+    colInput.setAttribute("name", "col");
     Object.assign(rowInput, properties);
-    const colInputs = Array(numOfColEdges).fill(colInput);
+    Object.assign(colInput, properties);
     const rowInputs = Array(numOfRowEdges).fill(rowInput);
-    colEdgesWeightsWraper.innerHTML = "";
-    this.appendChildren(colEdgesWeightsWraper, colInputs);
+    const colInputs = Array(numOfColEdges).fill(colInput);
     rowEdgesWeightsWraper.innerHTML = "";
     this.appendChildren(rowEdgesWeightsWraper, rowInputs);
+    colEdgesWeightsWraper.innerHTML = "";
+    this.appendChildren(colEdgesWeightsWraper, colInputs);
 }
 function unhideCalculationButtons() {
     const buttonsContainer = document.getElementById("calculation-buttons");
