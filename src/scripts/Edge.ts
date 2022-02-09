@@ -1,6 +1,6 @@
 type Orientation = "row" | "col";
 
-class Edge {
+class Edge implements iEdge {
   weight: number;
   orientation: Orientation;
   constructor(weight: number, orientation: Orientation) {
