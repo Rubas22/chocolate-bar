@@ -124,11 +124,11 @@ function deployChocolateBar(): void {
     return;
   }
 
-  const row = document.createElement("div");
-  row.setAttribute("class", "row");
-
   const piece = document.createElement("div");
   piece.setAttribute("class", "piece");
+
+  const row = document.createElement("div");
+  row.setAttribute("class", "row");
 
   const pieces = Array(this.chocolateBar.width).fill(piece);
   this.appendChildren(row, pieces);
@@ -139,36 +139,36 @@ function deployChocolateBar(): void {
 }
 
 function deployWeightInputs(): void {
-  const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
   const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-  if (!colEdgesWeightsWraper || !rowEdgesWeightsWraper) {
+  const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
+  if (!rowEdgesWeightsWraper || !colEdgesWeightsWraper) {
     this.manageError();
     return;
   }
 
-  const numOfColEdges = this.chocolateBar.width - 1;
   const numOfRowEdges = this.chocolateBar.height - 1;
-  const colInput = document.createElement("input");
+  const numOfColEdges = this.chocolateBar.width - 1;
   const rowInput = document.createElement("input");
+  const colInput = document.createElement("input");
   const properties = {
     type: "number",
     min: 0,
     max: 9999,
     required: true,
   };
-  colInput.setAttribute("name", "col");
   rowInput.setAttribute("name", "row");
-  Object.assign(colInput, properties);
+  colInput.setAttribute("name", "col");
   Object.assign(rowInput, properties);
+  Object.assign(colInput, properties);
 
-  const colInputs = Array(numOfColEdges).fill(colInput);
   const rowInputs = Array(numOfRowEdges).fill(rowInput);
-
-  colEdgesWeightsWraper.innerHTML = "";
-  this.appendChildren(colEdgesWeightsWraper, colInputs);
+  const colInputs = Array(numOfColEdges).fill(colInput);
 
   rowEdgesWeightsWraper.innerHTML = "";
   this.appendChildren(rowEdgesWeightsWraper, rowInputs);
+
+  colEdgesWeightsWraper.innerHTML = "";
+  this.appendChildren(colEdgesWeightsWraper, colInputs);
 }
 
 function unhideCalculationButtons(): void {
