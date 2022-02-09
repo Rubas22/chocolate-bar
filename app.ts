@@ -114,6 +114,7 @@ onload = () => {
   });
 
   costsForm?.addEventListener("reset", () => {
+    this.chocolateBar.reassignEdges([], []);
     this.resetMinimumCostSpan();
   });
 };
