@@ -5,7 +5,7 @@ var chocolateBarHeight: number = 0;
 var chocolateBarWidth: number = 0;
 let minimumCost: number = 0;
 const ERROR_MESSAGE: string =
-  "Ups! somenthing went wrong. Page is going to be reload";
+  "Ups! something went wrong. Page is going to be reload";
 
 /* BUTTON ACTIONS */
 onload = () => {
@@ -27,8 +27,12 @@ onload = () => {
 
   costsForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const rowInputs: any = document.getElementsByName("row");
-    const colInputs: any = document.getElementsByName("col");
+    const rowInputs: NodeListOf<HTMLInputElement> = document.getElementsByName(
+      "row"
+    ) as NodeListOf<HTMLInputElement>;
+    const colInputs: NodeListOf<HTMLInputElement> = document.getElementsByName(
+      "col"
+    ) as NodeListOf<HTMLInputElement>;
     const rowEdgesWeights: number[] = [];
     const colEdgesWeights: number[] = [];
 
@@ -80,27 +84,37 @@ function deployChocolateBar(): void {
   this.appendChildren(chocolateBar, rows);
 }
 
-function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
-  children.forEach((child) => parent.appendChild(child.cloneNode(true)));
-}
-
 function deployWeightInputs(): void {
   const colEdgesWeightsWraper = document.getElementById("col-edges-weights");
   const rowEdgesWeightsWraper = document.getElementById("row-edges-weights");
-  const numOfColEdges = this.chocolateBarWidth - 1;
-  const numOfRowEdges = this.chocolateBarHeight - 1;
   if (!colEdgesWeightsWraper || !rowEdgesWeightsWraper) {
     this.manageError();
     return;
   }
+
+  const numOfColEdges = this.chocolateBarWidth - 1;
+  const numOfRowEdges = this.chocolateBarHeight - 1;
+  const colInput = document.createElement("input");
+  const rowInput = document.createElement("input");
+  const properties = {
+    type: "number",
+    min: 0,
+    max: 9999,
+    required: true,
+  };
+  colInput.setAttribute("name", "col");
+  rowInput.setAttribute("name", "row");
+  Object.assign(colInput, properties);
+  Object.assign(rowInput, properties);
+
+  const colWeightInputs = Array(numOfColEdges).fill(colInput);
+  const rowWeightInputs = Array(numOfRowEdges).fill(rowInput);
+
   colEdgesWeightsWraper.innerHTML = "";
-  for (let i = 0; i < numOfColEdges; i++) {
-    colEdgesWeightsWraper.innerHTML += `<input type='number' name='col' min='0' max='9999' required>`;
-  }
+  this.appendChildren(colEdgesWeightsWraper, colWeightInputs);
+
   rowEdgesWeightsWraper.innerHTML = "";
-  for (let i = 0; i < numOfRowEdges; i++) {
-    rowEdgesWeightsWraper.innerHTML += `<input type='number' name='row' min='0' max='9999' required>`;
-  }
+  this.appendChildren(rowEdgesWeightsWraper, rowWeightInputs);
 }
 
 function unhideCalculationButtons(): void {
@@ -137,6 +151,10 @@ function resetMinimumCost(): void {
   }
   minimumCostFigure.innerText = "";
   minimumCost = 0;
+}
+
+function appendChildren(parent: HTMLElement, children: HTMLElement[]): void {
+  children.forEach((child) => parent.appendChild(child.cloneNode(true)));
 }
 
 function manageError(): void {
