@@ -1,9 +1,8 @@
 interface iChocolateBar {
-  height: number;
-  width: number;
   rowEdges: iEdge[];
   colEdges: iEdge[];
+  get height(): number;
+  get width(): number;
   get minimumCost(): number;
   get sortedEdges(): iEdge[];
-  reassignEdges(rowEdgesWeights: number[], colEdgesWeights: number[]): void;
 }

@@ -1,10 +1,15 @@
 "use strict";
 class ChocolateBar {
-    constructor(height = 0, width = 0) {
-        this.rowEdges = [];
-        this.colEdges = [];
-        this.height = height;
-        this.width = width;
+    constructor(rowEdgesWeights = [], colEdgesWeights = []) {
+        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+            return new Edge(rowEdgeWeight, "row");
+        });
+        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+            return new Edge(colEdgeWeight, "col");
+        });
+    }
+    get height() {
+        return this.rowEdges.length + 1;
     }
     get minimumCost() {
         let minimumCost = 0;
@@ -28,12 +33,7 @@ class ChocolateBar {
         const edges = [...this.rowEdges, ...this.colEdges];
         return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
     }
-    reassignEdges(rowEdgesWeights, colEdgesWeights) {
-        this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-            return new Edge(rowEdgeWeight, "row");
-        });
-        this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-            return new Edge(colEdgeWeight, "col");
-        });
+    get width() {
+        return this.colEdges.length + 1;
     }
 }

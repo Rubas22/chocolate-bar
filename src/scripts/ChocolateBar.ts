@@ -1,11 +1,17 @@
 class ChocolateBar implements iChocolateBar {
-  height: number;
-  width: number;
-  rowEdges: Edge[] = [];
-  colEdges: Edge[] = [];
-  constructor(height: number = 0, width: number = 0) {
-    this.height = height;
-    this.width = width;
+  rowEdges: Edge[];
+  colEdges: Edge[];
+  constructor(rowEdgesWeights: number[] = [], colEdgesWeights: number[] = []) {
+    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
+      return new Edge(rowEdgeWeight, "row");
+    });
+    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
+      return new Edge(colEdgeWeight, "col");
+    });
+  }
+
+  get height(): number {
+    return this.rowEdges.length + 1;
   }
 
   get minimumCost(): number {
@@ -32,12 +38,7 @@ class ChocolateBar implements iChocolateBar {
     return edges.sort((edgeA, edgeB) => edgeB.weight - edgeA.weight);
   }
 
-  reassignEdges(rowEdgesWeights: number[], colEdgesWeights: number[]) {
-    this.rowEdges = rowEdgesWeights.map((rowEdgeWeight) => {
-      return new Edge(rowEdgeWeight, "row");
-    });
-    this.colEdges = colEdgesWeights.map((colEdgeWeight) => {
-      return new Edge(colEdgeWeight, "col");
-    });
+  get width(): number {
+    return this.colEdges.length + 1;
   }
 }
