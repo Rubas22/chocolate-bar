@@ -2,10 +2,10 @@
 let chocolateBar = new ChocolateBar();
 let height = 0;
 let width = 0;
+let rowEdgesWeights;
+let colEdgesWeights;
 const ERROR_MESSAGE = "Ups! something went wrong. Page is going to be reload";
 onload = () => {
-    let rowEdgesWeights;
-    let colEdgesWeights;
     const sizeForm = document.getElementById("size-form");
     const costsForm = document.getElementById("costs-form");
     sizeForm === null || sizeForm === void 0 ? void 0 : sizeForm.addEventListener("submit", (event) => {
@@ -20,9 +20,7 @@ onload = () => {
             alert("Size hasn't been changed, please select a new size");
             return;
         }
-        rowEdgesWeights = Array(height - 1).fill(NaN);
-        colEdgesWeights = Array(width - 1).fill(NaN);
-        chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
+        restarChocolateBar();
         deployChocolateBar();
         deployWeightInputs();
         resetMinimumCostSpan();
@@ -39,9 +37,7 @@ onload = () => {
         showMinimumCost();
     });
     costsForm === null || costsForm === void 0 ? void 0 : costsForm.addEventListener("reset", () => {
-        rowEdgesWeights = Array(height - 1).fill(NaN);
-        colEdgesWeights = Array(width - 1).fill(NaN);
-        chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
+        restarChocolateBar();
         resetMinimumCostSpan();
     });
 };
@@ -103,6 +99,11 @@ function resetMinimumCostSpan() {
         return;
     }
     minimumCostFigure.innerText = "";
+}
+function restarChocolateBar() {
+    rowEdgesWeights = Array(height - 1).fill(NaN);
+    colEdgesWeights = Array(width - 1).fill(NaN);
+    chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
 }
 function showMinimumCost() {
     const minimumCostFigure = document.getElementById("minimum-cost-figure");

@@ -1,12 +1,12 @@
 let chocolateBar = new ChocolateBar();
 let height: number = 0;
 let width: number = 0;
+let rowEdgesWeights: number[];
+let colEdgesWeights: number[];
 const ERROR_MESSAGE: string =
   "Ups! something went wrong. Page is going to be reload";
 
 onload = () => {
-  let rowEdgesWeights: number[];
-  let colEdgesWeights: number[];
   const sizeForm = document.getElementById("size-form") as HTMLFormElement;
   const costsForm = document.getElementById("costs-form");
 
@@ -27,9 +27,7 @@ onload = () => {
       alert("Size hasn't been changed, please select a new size");
       return;
     }
-    rowEdgesWeights = Array(height - 1).fill(NaN);
-    colEdgesWeights = Array(width - 1).fill(NaN);
-    chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
+    restarChocolateBar();
     deployChocolateBar();
     deployWeightInputs();
     resetMinimumCostSpan();
@@ -58,9 +56,7 @@ onload = () => {
   });
 
   costsForm?.addEventListener("reset", () => {
-    rowEdgesWeights = Array(height - 1).fill(NaN);
-    colEdgesWeights = Array(width - 1).fill(NaN);
-    chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
+    restarChocolateBar();
     resetMinimumCostSpan();
   });
 };
@@ -135,6 +131,12 @@ function resetMinimumCostSpan(): void {
     return;
   }
   minimumCostFigure.innerText = "";
+}
+
+function restarChocolateBar() {
+  rowEdgesWeights = Array(height - 1).fill(NaN);
+  colEdgesWeights = Array(width - 1).fill(NaN);
+  chocolateBar = new ChocolateBar(rowEdgesWeights, colEdgesWeights);
 }
 
 function showMinimumCost(): void {
